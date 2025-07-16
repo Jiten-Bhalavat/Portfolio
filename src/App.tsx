@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { 
   Github, 
   Linkedin, 
@@ -25,7 +26,19 @@ import {
   MapPin
 } from 'lucide-react';
 
-const App = () => {
+// Import page components
+import ProjectsPage from './components/ProjectsPage';
+import CertificationsPage from './components/CertificationsPage';
+import YouTubePage from './components/YouTubePage';
+import MediumPage from './components/MediumPage';
+
+// Import shared data
+import { allProjects } from './data/projects';
+import { allCertifications } from './data/certifications';
+import { allYouTubeVideos } from './data/youtube';
+import { allMediumArticles } from './data/medium';
+
+const HomePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
@@ -55,6 +68,17 @@ const App = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Handle hash navigation when component mounts
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      // Small delay to ensure the page has rendered
+      setTimeout(() => {
+        scrollToSection(hash);
+      }, 100);
+    }
   }, []);
 
   useEffect(() => {
@@ -97,32 +121,8 @@ const App = () => {
     setIsMenuOpen(false);
   };
 
-  const projects = [
-    {
-      title: "AI Voice Assistant",
-      description: "Intelligent conversational AI using natural language processing and LLMs for customer support automation",
-      image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=400",
-      tech: ["Speech-to-Text", "Text-to-Speech", "Large Language Models", "OpenAI", "Whisper"],
-      github: "https://github.com/Jiten-Bhalavat/Voice-AI-Agent",
-      demo: "#"
-    },
-    {
-      title: "RAG Document Assistant",
-      description: "Retrieval-Augmented Generation system for intelligent document querying with vector embeddings",
-      image: "https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=400",
-      tech: ["Python", "FAISS", "Transformers", "Streamlit"],
-      github: "#",
-      demo: "#"
-    },
-    {
-      title: "Computer Vision Analytics",
-      description: "Real-time object detection and classification system using CNN architectures",
-      image: "https://images.pexels.com/photos/8386422/pexels-photo-8386422.jpeg?auto=compress&cs=tinysrgb&w=400",
-      tech: ["OpenCV", "PyTorch", "YOLO", "Flask"],
-      github: "#",
-      demo: "#"
-    }
-  ];
+  // Use shared data and determine how many items to show on home page
+  const projects = allProjects.slice(0, Math.min(allProjects.length, 3));
 
   const skillCategories = [
     {
@@ -160,141 +160,58 @@ const App = () => {
     }
   ];
 
-  const certifications = [
-    {
-      title: "AWS Certified Machine Learning - Specialty",
-      issuer: "Amazon Web Services",
-      date: "2024",
-      image: "https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=300"
-    },
-    {
-      title: "TensorFlow Developer Certificate",
-      issuer: "Google",
-      date: "2023",
-      image: "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=300"
-    },
-    {
-      title: "Deep Learning Specialization",
-      issuer: "Coursera - Andrew Ng",
-      date: "2023",
-      image: "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=300"
-    },
-    {
-      title: "LangChain for LLM Application Development",
-      issuer: "DeepLearning.AI",
-      date: "2024",
-      image: "https://images.pexels.com/photos/1181681/pexels-photo-1181681.jpeg?auto=compress&cs=tinysrgb&w=300"
-    }
-  ];
+  const certifications = allCertifications.slice(0, Math.min(allCertifications.length, 3));
 
-  const youtubeVideos = [
-    {
-      title: "Building RAG Applications with LangChain",
-      views: "15K views",
-      duration: "12:45",
-      thumbnail: "https://images.pexels.com/photos/4348401/pexels-photo-4348401.jpeg?auto=compress&cs=tinysrgb&w=400",
-      url: "#"
-    },
-    {
-      title: "Complete Guide to Vector Databases",
-      views: "8.2K views",
-      duration: "18:30",
-      thumbnail: "https://images.pexels.com/photos/4348404/pexels-photo-4348404.jpeg?auto=compress&cs=tinysrgb&w=400",
-      url: "#"
-    },
-    {
-      title: "Fine-tuning LLMs for Custom Tasks",
-      views: "22K views",
-      duration: "25:15",
-      thumbnail: "https://images.pexels.com/photos/4348407/pexels-photo-4348407.jpeg?auto=compress&cs=tinysrgb&w=400",
-      url: "#"
-    }
-  ];
+  const youtubeVideos = allYouTubeVideos.slice(0, Math.min(allYouTubeVideos.length, 3));
 
-  const mediumArticles = [
-    {
-      title: "Understanding Retrieval-Augmented Generation (RAG)",
-      excerpt: "A comprehensive guide to implementing RAG systems for enhanced AI applications...",
-      readTime: "8 min read",
-      claps: "245",
-      date: "Dec 15, 2024",
-      url: "#"
-    },
-    {
-      title: "Vector Embeddings: The Foundation of Modern AI",
-      excerpt: "Exploring how vector embeddings power search, recommendations, and LLM applications...",
-      readTime: "6 min read",
-      claps: "189",
-      date: "Nov 28, 2024",
-      url: "#"
-    },
-    {
-      title: "Building Production-Ready LLM Applications",
-      excerpt: "Best practices for deploying and scaling large language model applications in production...",
-      readTime: "12 min read",
-      claps: "312",
-      date: "Nov 10, 2024",
-      url: "#"
-    }
-  ];
+  const mediumArticles = allMediumArticles.slice(0, Math.min(allMediumArticles.length, 3));
 
   const workExperience = [
     {
-      title: "AI Engineer Intern",
-      company: "TechCorp AI Solutions",
-      location: "San Francisco, CA",
-      period: "Jun 2024 - Present",
-      description: "Developing RAG-based document processing systems and fine-tuning LLMs for customer support automation.",
+      title: "Machine Learning Engineer Intern",
+      company: "Plutomen technologies Pvt. Ltd.",
+      location: "Gujarat, India",
+      period: "Sept 2023 - April 2024",
+      // description: "Developing RAG-based document processing systems and fine-tuning LLMs for customer support automation.",
       achievements: [
-        "Built RAG pipeline reducing query response time by 60%",
-        "Implemented vector search with 95% accuracy improvement",
-        "Deployed ML models serving 10K+ daily requests"
+        "Engineered a high-performance RAG chatbot using LlamaIndex, LangChain, and HuggingFace embeddings, boosting semantic search relevance by 30% through advanced indexing with Qdrant and Pinecone, demonstrating proficiency in API integration and innovative model experimentation",
+        "Optimized multi-model pipeline by evaluating LLMs, embeddings, and re-rankers, refining generation parameters to enhance output quality and consistency, aligning with generative AI tool experimentation",
+        "Deployed a scalable Flask API to connect UI with retrieval backends, facilitating seamless real-time interactions and smooth integration with client-side apps",
+        "Identified and fixed model failures in RAG chatbot testing, boosting robustness via refined prompts and streamlined flow"  
       ]
     },
     {
-      title: "Machine Learning Research Assistant",
-      company: "Stanford AI Lab",
-      location: "Stanford, CA",
-      period: "Jan 2024 - May 2024",
-      description: "Conducted research on transformer architectures and contributed to open-source ML frameworks.",
+      title: "Machine Learning Engineer Intern",
+      company: "Nxon Pvt. Ltd.",
+      location: "Gujarat, India",
+      period: "May 2022 - June 2024",
+      // description: "Conducted research on transformer architectures and contributed to open-source ML frameworks.",
       achievements: [
-        "Published 2 research papers on attention mechanisms",
-        "Contributed to PyTorch Lightning framework",
-        "Mentored 5 undergraduate students in ML projects"
-      ]
-    },
-    {
-      title: "Software Developer Intern",
-      company: "DataTech Solutions",
-      location: "Mumbai, India",
-      period: "May 2023 - Aug 2023",
-      description: "Developed full-stack web applications and implemented data analytics dashboards.",
-      achievements: [
-        "Built React.js dashboard with real-time analytics",
-        "Optimized database queries improving performance by 40%",
-        "Implemented CI/CD pipeline reducing deployment time"
+        "Designed a CNN achieving over 99% test accuracy on MNIST by fine-tuning convolutional and pooling layers",
+        "Applied dropout regularization techniques, improving model generalization by 7% and reducing overfitting risks",
+        "Refined architecture to boost classification reliability, streamlining deployment in production-ready ML pipelines"
       ]
     }
   ];
 
   const education = [
     {
-      degree: "Master of Science in Artificial Intelligence",
-      school: "Stanford University",
-      location: "Stanford, CA",
-      period: "2022 - 2024",
-      gpa: "3.9/4.0",
-      description: "Specialized in Machine Learning, Deep Learning, and Natural Language Processing",
-      coursework: ["Advanced Machine Learning", "Deep Learning", "NLP", "Computer Vision", "Reinforcement Learning"]
+      degree: "Master of Science in Applied Machine Learning",
+      school: "University of Maryland, College Park",
+      location: "College Park, MD",
+      period: "2024 - 2026",
+      gpa: "3.5/4.0",
+      // description: "Specialized in Machine Learning, Deep Learning, and Natural Language Processing",
+      coursework: ["Machine Learning", "Probability & Statistics", "NLP", "Computer Vision", "Data Science", "Multimodal Foundation Models", "Cloud Computing"]
     },
     {
-      degree: "Bachelor of Technology in Computer Science",
-      school: "Indian Institute of Technology",
-      location: "Mumbai, India",
-      period: "2018 - 2022",
-      gpa: "3.8/4.0",
+      degree: "Bachelor of Technology in Information Technology",
+      school: "Charusat University of Science and Technology",
+      location: "Gujarat, India",
+      period: "2020 - 2024",
+      gpa: "3.7/4.0",
       description: "Graduated with First Class Honors, focused on AI and Software Engineering",
-      coursework: ["Data Structures", "Algorithms", "Machine Learning", "Database Systems", "Software Engineering"]
+      coursework: ["Data Structures & Algorithms", "Computer Networks", "Operating Systems", "Database Systems", "Software Engineering"]
     }
   ];
 
@@ -509,15 +426,13 @@ const App = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-            <a 
-              href="https://github.com/Jiten-Bhalavat/" 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <Link 
+              to="/projects"
               className="inline-flex items-center bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
             >
               View More Projects
               <ExternalLink size={20} className="ml-2" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -567,30 +482,39 @@ const App = () => {
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Certifications</h2>
             <p className="text-xl text-gray-600">Professional credentials and achievements</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow text-center">
-                <img
-                  src={cert.image}
-                  alt={cert.title}
-                  className="w-16 h-16 mx-auto mb-4 rounded-lg object-cover"
-                />
-                <h3 className="font-bold text-gray-900 mb-2 text-sm">{cert.title}</h3>
-                <p className="text-gray-600 text-sm mb-2">{cert.issuer}</p>
-                <span className="text-blue-600 font-medium text-sm">{cert.date}</span>
-              </div>
+              <a
+                key={index}
+                href={cert.verifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 text-center group cursor-pointer transform hover:-translate-y-1 border border-gray-100"
+              >
+                <div className="mb-4">
+                  <h3 className="text-lg font-bold text-blue-600 mb-2 group-hover:text-blue-800 transition-colors">
+                    {cert.issuer}
+                  </h3>
+                  <h4 className="font-semibold text-gray-900 mb-3 text-sm leading-tight">
+                    {cert.title}
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4">{cert.date}</p>
+                  <div className="flex items-center justify-center text-blue-600 opacity-60 group-hover:opacity-100 transition-opacity">
+                    <span className="text-xs mr-1">Verify Certificate</span>
+                    <ExternalLink size={12} />
+                  </div>
+                </div>
+              </a>
             ))}
           </div>
           <div className="text-center mt-12">
-            <a 
-              href="https://www.credly.com/" 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <Link 
+              to="/certifications"
               className="inline-flex items-center bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
             >
               View More Certifications
               <ExternalLink size={20} className="ml-2" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -606,14 +530,29 @@ const App = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {youtubeVideos.map((video, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="relative">
+                <div 
+                  className="relative cursor-pointer"
+                  onClick={() => {
+                    if (video.url && video.url !== "#") {
+                      window.open(video.url, '_blank');
+                    }
+                  }}
+                >
                   <img
                     src={video.thumbnail}
                     alt={video.title}
                     className="w-full h-48 object-cover"
                   />
                   <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-                    <Play size={48} className="text-white" />
+                    {video.url && video.url !== "#" ? (
+                      <div className="bg-red-600 rounded-full p-4 hover:bg-red-700 transition-colors">
+                        <Play size={32} className="text-white ml-1" />
+                      </div>
+                    ) : (
+                      <div className="bg-gray-600 rounded-full p-4">
+                        <Play size={32} className="text-gray-300 ml-1" />
+                      </div>
+                    )}
                   </div>
                   <div className="absolute bottom-2 right-2 bg-black/80 text-white px-2 py-1 rounded text-sm">
                     {video.duration}
@@ -627,15 +566,13 @@ const App = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-            <a 
-              href="https://www.youtube.com/@AI-Agents-official" 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <Link 
+              to="/youtube"
               className="inline-flex items-center bg-red-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors"
             >
               View More Videos
               <ExternalLink size={20} className="ml-2" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -667,15 +604,13 @@ const App = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-            <a 
-              href="https://infinityai.medium.com/" 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <Link 
+              to="/medium"
               className="inline-flex items-center bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
             >
               View More Articles
               <ExternalLink size={20} className="ml-2" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -713,7 +648,7 @@ const App = () => {
                         </p>
                       </div>
                     </div>
-                    <p className="text-gray-600 mb-4">{job.description}</p>
+
                     <ul className="space-y-2">
                       {job.achievements.map((achievement, achIndex) => (
                         <li key={achIndex} className="flex items-start">
@@ -813,6 +748,20 @@ const App = () => {
         </div>
       </section>
     </div>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/certifications" element={<CertificationsPage />} />
+        <Route path="/youtube" element={<YouTubePage />} />
+        <Route path="/medium" element={<MediumPage />} />
+      </Routes>
+    </Router>
   );
 };
 
