@@ -129,33 +129,33 @@ const HomePage = () => {
       title: "Machine Learning & AI",
       icon: <Brain size={32} className="text-blue-600" />,
       skills: [
-        { name: "LLMs", level: 85 },
-        { name: "RAG Pipelines", level: 85 },
-        { name: "Vector Search (FAISS, Pinecone)", level: 85 },
-        { name: "CNN / RNN / Transformers", level: 75 },
-        { name: "Time Series Analysis", level: 70 }
+        { name: "Python", level: 95 },
+        { name: "PyTorch / TensorFlow", level: 90 },
+        { name: "Machine Learning", level: 90 },
+        { name: "Deep Learning", level: 90 },
+        { name: "Computer Vision / NLP", level: 88 }
       ]
     },
     {
-      title: "Software & Web Dev",
-      icon: <Code size={32} className="text-green-600" />,
-      skills: [
-        { name: "React.js / TypeScript", level: 90 },
-        { name: "Node.js / Express.js", level: 80 },
-        { name: "REST APIs / Flask / FastAPI", level: 85 },
-        { name: "MongoDB / PostgreSQL", level: 70 },
-        { name: "HTML/CSS / Tailwind", level: 90 }
-      ]
-    },
-    {
-      title: "Tools, Platforms & DevOps",
+      title: "Generative AI & LLMs",
       icon: <Settings size={32} className="text-purple-600" />,
       skills: [
-        { name: "Git / GitHub / VS Code", level: 90 },
-        { name: "Docker / Kubernetes", level: 75 },
-        { name: "AWS / GCP / Azure", level: 60 },
-        { name: "LangChain", level: 80 },
-        { name: "Jupyter / Colab / Tableau", level: 85 }
+        { name: "Large Language Models (LLMs)", level: 80 },
+        { name: "RAG Pipelines", level: 90 },
+        { name: "HuggingFace / Transformers", level: 85 },
+        { name: "Vector Databases (Qdrant, Pinecone)", level: 85 },
+        { name: "Prompt Engineering", level: 85 }
+      ]
+    },
+    {
+      title: "Tools & Development",
+      icon: <Code size={32} className="text-green-600" />,
+      skills: [
+        { name: "Git / GitHub", level: 90 },
+        { name: "FastAPI / Flask", level: 90 },
+        { name: "Docker / Kubernetes", level: 80 },
+        { name: "AWS / GCP", level: 75 },
+        { name: "MongoDB / SQL", level: 80 }
       ]
     }
   ];
