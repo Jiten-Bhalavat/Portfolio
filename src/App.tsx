@@ -226,10 +226,13 @@ const HomePage = () => {
               {[
                 { name: 'Home', id: 'home' },
                 { name: 'About', id: 'about' },
-                { name: 'Skills', id: 'skills' },
                 { name: 'Projects', id: 'projects' },
+                { name: 'Skills', id: 'skills' },
+                { name: 'Certifications', id: 'certifications' },
+                { name: 'YouTube', id: 'youtube' },
+                { name: 'Medium', id: 'medium' },
+                { name: 'Experience', id: 'experience' },
                 { name: 'Education', id: 'education' },
-                { name: 'AI Assistant', id: 'ai-assistant' },
                 { name: 'Contact', id: 'contact' }
               ].map((item) => (
                 <button
@@ -261,10 +264,13 @@ const HomePage = () => {
               {[
                 { name: 'Home', id: 'home' },
                 { name: 'About', id: 'about' },
-                { name: 'Skills', id: 'skills' },
                 { name: 'Projects', id: 'projects' },
+                { name: 'Skills', id: 'skills' },
+                { name: 'Certifications', id: 'certifications' },
+                { name: 'YouTube', id: 'youtube' },
+                { name: 'Medium', id: 'medium' },
+                { name: 'Experience', id: 'experience' },
                 { name: 'Education', id: 'education' },
-                { name: 'AI Assistant', id: 'ai-assistant' },
                 { name: 'Contact', id: 'contact' }
               ].map((item) => (
                 <button
