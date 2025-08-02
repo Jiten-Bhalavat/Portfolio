@@ -6,6 +6,12 @@ export const allCertifications = [
     verifyUrl: "https://learn.deeplearning.ai/accomplishments/441cf1ac-b61e-49a6-981d-1fa7de350247?usp=sharing"
   },
   {
+    title: "Building AI Voice Agents for Production",
+    issuer: "DeepLearning.AI",
+    date: "2025",
+    verifyUrl: "https://learn.deeplearning.ai/accomplishments/ee5ce8b3-0d6e-4f9d-ae3a-a1eed45bf9a3?usp=sharing"
+  },
+  {
     title: "AWS Academy Graduate - AWS Academy Machine Learning Foundations",
     issuer: "Amazon Web Services",
     date: "2023",
@@ -13,7 +19,7 @@ export const allCertifications = [
   },
   {
     title: "Machine Learning Specialization",
-    issuer: "Coursera - Andrew Ng",
+    issuer: "DeepLearning.AI",
     date: "2022",
     verifyUrl: "https://coursera.org/share/1fe45f14c1360815fac29c6765f8615d"
   },

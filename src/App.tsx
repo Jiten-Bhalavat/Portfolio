@@ -501,14 +501,14 @@ const HomePage = () => {
                 className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 text-center group cursor-pointer transform hover:-translate-y-1 border border-gray-100"
               >
                 <div className="mb-4">
-                  <h3 className="text-lg font-bold text-blue-600 mb-2 group-hover:text-blue-800 transition-colors">
-                    {cert.issuer}
-                  </h3>
-                  <h4 className="font-semibold text-gray-900 mb-3 text-sm leading-tight">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">
                     {cert.title}
+                  </h3>
+                  <h4 className="font-semibold text-blue-600 mb-3 text-sm group-hover:text-blue-800 transition-colors">
+                    {cert.issuer}
                   </h4>
                   <p className="text-gray-600 text-sm mb-4">{cert.date}</p>
-                  <div className="flex items-center justify-center text-blue-600 opacity-60 group-hover:opacity-100 transition-opacity">
+                  <div className="flex items-center justify-center text-blue-600 transition-opacity">
                     <span className="text-xs mr-1">Verify Certificate</span>
                     <ExternalLink size={12} />
                   </div>

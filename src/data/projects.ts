@@ -1,7 +1,7 @@
 export const allProjects = [
   {
     title: "AI Voice Translator",
-    description: "Intelligent conversational AI using natural language processing and LLMs for customer support automation",
+    description: "A multilingual voice translation system that converts spoken input into accurate translations across multiple languages using SST and TTS",
     image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=400",
     tech: ["Speech-to-Text", "Text-to-Speech", "Large Language Models", "OpenAI", "Whisper"],
     github: "https://github.com/Jiten-Bhalavat/Voice-Translator",
