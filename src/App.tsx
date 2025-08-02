@@ -23,11 +23,12 @@ import {
   BookOpen,
   Video,
   PenTool,
-  MapPin
+  MapPin,
+  Download
 } from 'lucide-react';
 
 // Import page components
-import ProjectsPage from './components/ProjectsPage';
+import ProjectsPage from './components/ProjectsPage';  
 import CertificationsPage from './components/CertificationsPage';
 import YouTubePage from './components/YouTubePage';
 import MediumPage from './components/MediumPage';
@@ -176,7 +177,7 @@ const HomePage = () => {
       achievements: [
         "Engineered a high-performance RAG chatbot using LlamaIndex, LangChain, and HuggingFace embeddings, boosting semantic search relevance by 30% through advanced indexing with Qdrant and Pinecone, demonstrating proficiency in API integration and innovative model experimentation",
         "Optimized multi-model pipeline by evaluating LLMs, embeddings, and re-rankers, refining generation parameters to enhance output quality and consistency, aligning with generative AI tool experimentation",
-        "Deployed a scalable Flask API to connect UI with retrieval backends, facilitating seamless real-time interactions and smooth integration with client-side apps",
+        "Developed a scalable Flask API to connect UI with retrieval backends, facilitating seamless real-time interactions and smooth integration with client-side apps",
         "Identified and fixed model failures in RAG chatbot testing, boosting robustness via refined prompts and streamlined flow"  
       ]
     },
@@ -317,12 +318,14 @@ const HomePage = () => {
             >
               View My Work
             </button>
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg font-medium hover:bg-blue-600 hover:text-white transition-colors text-lg"
+            <a
+              href="/Jiten-Bhalavat-AI-Engineer.pdf"
+              download="Jiten-Bhalavat-AI-Engineer.pdf"
+              className="inline-flex items-center justify-center border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg font-medium hover:bg-blue-600 hover:text-white transition-colors text-lg"
             >
-              Get In Touch
-            </button>
+              <Download size={20} className="mr-2" />
+              Download Resume
+            </a>
           </div>
           
           {/* Social Icons */}
