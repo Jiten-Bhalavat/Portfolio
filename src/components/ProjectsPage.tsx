@@ -38,14 +38,20 @@ const ProjectsPage = () => {
                   alt={project.title}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
-                  <a href={project.github} className="bg-white text-gray-900 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                    <Github size={20} />
-                  </a>
-                  <a href={project.demo} className="bg-white text-gray-900 p-2 rounded-full hover:bg-gray-100 transition-colors">
-                    <ExternalLink size={20} />
-                  </a>
-                </div>
+                {(project.github || project.demo) && (
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
+                    {project.github && project.github !== "" && project.github !== "#" && (
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="bg-white text-gray-900 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                        <Github size={20} />
+                      </a>
+                    )}
+                    {project.demo && project.demo !== "" && project.demo !== "#" && (
+                      <a href={project.demo} target="_blank" rel="noopener noreferrer" className="bg-white text-gray-900 p-2 rounded-full hover:bg-gray-100 transition-colors">
+                        <ExternalLink size={20} />
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{project.title}</h3>

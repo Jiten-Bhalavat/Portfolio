@@ -1,8 +1,16 @@
 export const allProjects = [
   {
+    title: "InterviewAI - AI Mock Interview Platform",
+    description: "InterviewAI is a platform that combines AI-driven mock interviews and expert-led sessions to help job seekers practice, gain feedback, and prepare effectively for real interviews.",
+    image: "/images/interviewAI.png",
+    tech: ["Speech-to-Speech", "ElevenLabs", "Google Cloud Platform", "Typescript", "Firebase"],
+    github: "https://github.com/Jiten-Bhalavat/",
+    demo: "https://www.youtube.com/watch?v=eOW6wfB_ov0"
+  },
+  {
     title: "AI Voice Translator",
     description: "A multilingual voice translation system that converts spoken input into accurate translations across multiple languages using SST and TTS",
-    image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=400",
+    image: "images/Voice Translator.png",
     tech: ["Speech-to-Text", "Text-to-Speech", "Large Language Models", "OpenAI", "Whisper"],
     github: "https://github.com/Jiten-Bhalavat/Voice-Translator",
     demo: "#"
@@ -30,5 +38,13 @@ export const allProjects = [
     tech: ["AI Agent", "Real-Time APIs", "Firecrawl", "Multi-Agent", "Phidata","text-to-speech"],
     github: "https://github.com/Jiten-Bhalavat/Personal-AI-Agent",
     demo: "https://github.com/user-attachments/assets/c24e24f4-851b-403f-8d9b-ec240b442466"
+  },
+  {
+    title: "Cover Letter Generator Extension - In-Progress",
+    description: "Browser extension that instantly creates tailored cover letters from any job posting using your resume. It saves ~10 minutes per application, streamlining the job hunt process.",
+    image: "/images/Cover Letter Generator.png",
+    tech: ["Vibe-Coding", "Claude Code", "Cursor"],
+    github: "https://github.com/Jiten-Bhalavat/Cover-letter-extension",
+    demo: ""
   }
 ]; 
