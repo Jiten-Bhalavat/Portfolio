@@ -8,12 +8,12 @@ export const allProjects = [
     demo: "https://www.youtube.com/watch?v=eOW6wfB_ov0"
   },
   {
-    title: "AI Voice Translator",
-    description: "A multilingual voice translation system that converts spoken input into accurate translations across multiple languages using SST and TTS",
-    image: "images/Voice Translator.png",
-    tech: ["Speech-to-Text", "Text-to-Speech", "Large Language Models", "OpenAI", "Whisper"],
-    github: "https://github.com/Jiten-Bhalavat/Voice-Translator",
-    demo: "#"
+    title: "MCP Expense Tracker",
+    description: "Expense Tracking System using Model Context Protocol (MCP), enables AI assistants (like Claude) to manage and interact with expense data via natural language, replacing the need for a traditional UI",
+    image: "/images/MCP Expense Tracker Server.png",
+    tech: ["MCP Server", "Claude Desktop", "MCP Client", "FastMCP Cloud", "Remote Server"],
+    github: "https://github.com/Jiten-Bhalavat/Expense-Tracker-MCP",
+    demo: ""
   },
   {
     title: "FoodChain AI Hackathon",
@@ -22,6 +22,14 @@ export const allProjects = [
     tech: ["Voice AI", "Recommendation System", "Google Authentication","Firebase", "AWS", "TypeScript"],
     github: "https://github.com/Jiten-Bhalavat/FoodChain-AI",
     demo: "https://main.dv8lgo1pwq1w6.amplifyapp.com/"
+  },
+  {
+    title: "AI Voice Translator",
+    description: "A multilingual voice translation system that converts spoken input into accurate translations across multiple languages using SST and TTS",
+    image: "images/Voice Translator.png",
+    tech: ["Speech-to-Text", "Text-to-Speech", "Large Language Models", "OpenAI", "Whisper"],
+    github: "https://github.com/Jiten-Bhalavat/Voice-Translator",
+    demo: "#"
   },
   {
     title: "ClassTopper - AI-Powered Exam Preparation Platform ",
