@@ -1,6 +1,14 @@
 export const allMediumArticles = [
   {
-    title: "3 Proven Techniques to Accurately Parse Your PDFs",
+    title: "Think You Know RAG? Take This 16-Point Checklist and Prove It Wrong",
+    excerpt: "You don't know RAG. Just because you connected Embeddings, VectorDB, Query Engine -> Result, doesn't mean you \"know RAG.\" ",
+    readTime: "2 min read",
+    date: "Oct 05, 2025",
+    url: "https://infinityai.medium.com/think-you-know-rag-take-this-16-point-checklist-and-prove-it-wrong-4fe75c0448bc",
+    tags: ["RAG", "Retrieval-Augmented Generation", "LLMs", "Hallucinations"]
+  },
+  {
+    title: "Fix RAG Hallucinations at the Source: Top PDF Parsers Ranked 2025",
     excerpt: "No matter how advanced your workflow is or how powerful the latest LLM you plug in, if the data isn't parsed properly, your system will never retrieve accurate answers.",
     readTime: "05:00 min read",
     // claps: ",

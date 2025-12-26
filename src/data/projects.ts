@@ -8,7 +8,7 @@ export const allProjects = [
     demo: "https://www.youtube.com/watch?v=eOW6wfB_ov0"
   },
   {
-    title: "SGLang-vLLM-benchmarks",
+    title: "SGLang vs vLLM Benchmarks",
     description: "Benchmarked LLM inference performance by running three models across vLLM and SGLang frameworks. Deployed GPU-accelerated inference on AWS EC2 using Docker and CUDA, executing controlled load tests. Compared throughput, latency, and resource utilization to evaluate framework and model performance.",
     image: "/images/sgland-vs-vllm.png",
     tech: ["LLM Inference Benchmarking", "GPU-Accelerated Inference (CUDA, Docker)", "vLLM & SGLang"],
@@ -21,14 +21,6 @@ export const allProjects = [
     image: "/images/fine-tuning.jpg",
     tech: ["Llama 3.1 8B", "GRPO + LoRA", "4-bit Quantization", "Reinforcement Learning"],
     github: "https://github.com/Jiten-Bhalavat/Finetuning-Llama3.1-8B-with-GRPO",
-    demo: ""
-  },
-  {
-    title: "LLM-Inference-Benchmarks",
-    description: "Benchmarked LLM inference by running three models on vLLM and SGLang, deploying GPU-accelerated Docker/CUDA workloads on AWS EC2 and comparing throughput, latency, and resource utilization under controlled load tests.",
-    image: "/images/llm-inference-benchmarks.png",
-    tech: ["LLM Inference Benchmarking", "GPU-Accelerated Inference (CUDA, Docker)", "vLLM & SGLang"],
-    github: "https://github.com/Jiten-Bhalavat/LLM-Inference-Benchmarks",
     demo: ""
   },
   {
