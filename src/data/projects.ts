@@ -16,7 +16,7 @@ export const allProjects = [
     demo: ""
   },
   {
-    title: "Finetuning-Llama3.1-8B-with-GRPO",
+    title: "Finetuning Llama3.1 8B with GRPO",
     description: "Fine-tuned Llama 3.1 8B for math reasoning using GRPO + LoRA, achieving 78.5% GSM8K accuracy with a custom reward function, and enabled efficient consumer-GPU training via 4-bit quantization.",
     image: "/images/fine-tuning.jpg",
     tech: ["Llama 3.1 8B", "GRPO + LoRA", "4-bit Quantization", "Reinforcement Learning"],
