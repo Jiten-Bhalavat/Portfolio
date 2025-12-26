@@ -202,16 +202,27 @@ const HomePage = () => {
 
   const workExperience = [
     {
-      title: "Machine Learning Engineer Intern",
+      title: "AI Engineer Intern",
       company: "Plutomen technologies Pvt. Ltd.",
       location: "Gujarat, India",
       period: "Sept 2023 - April 2024",
       // description: "Developing RAG-based document processing systems and fine-tuning LLMs for customer support automation.",
       achievements: [
-        "Engineered a high-performance RAG chatbot using LlamaIndex, LangChain, and HuggingFace embeddings, boosting semantic search relevance by 30% through advanced indexing with Qdrant and Pinecone, demonstrating proficiency in API integration and innovative model experimentation",
-        "Optimized multi-model pipeline by evaluating LLMs, embeddings, and re-rankers, refining generation parameters to enhance output quality and consistency, aligning with generative AI tool experimentation",
-        "Developed a scalable Flask API to connect UI with retrieval backends, facilitating seamless real-time interactions and smooth integration with client-side apps",
-        "Identified and fixed model failures in RAG chatbot testing, boosting robustness via refined prompts and streamlined flow"  
+        "Architected automated parsing pipeline using LlamaParse and Mistral OCR, boosting data extraction accuracy from 45% to 89% and eliminating 15 hours/week of manual compliance review, using LlamaIndex and LangChain as orchestration",
+        "Improved chatbot answer relevance by 30% through optimized chunking and semantic search using Qdrant, Pinecone",
+        "Designed and deployed Flask REST APIs backend with 8 endpoints, integrating PostgreSQL for chat history and enabling real-time RAG responses with less than 200ms latency for client applications"
+      ]
+    },
+    {
+      title: "Research Assistant",
+      company: "Charotar University of Science and Technology",
+      location: "Gujarat, India",
+      period: "Apr 2023 - Jun 2023",
+      // description: "Developing RAG-based document processing systems and fine-tuning LLMs for customer support automation.",
+      achievements: [
+        "Constructed a U-Net for MRI segmentation, achieving 91% accuracy by training models on preprocessed DICOM images",
+        "Benchmarked model using IoU metrics, achieving a 15% improvement over baseline CNN architectures",
+        "Applied advanced AI techniques in medical imaging, demonstrating the impact of AI professionals in healthcare"
       ]
     },
     {
@@ -223,7 +234,7 @@ const HomePage = () => {
       achievements: [
         "Designed a CNN achieving over 99% test accuracy on MNIST by fine-tuning convolutional and pooling layers",
         "Applied dropout regularization techniques, improving model generalization by 7% and reducing overfitting risks",
-        "Refined architecture to boost classification reliability, streamlining deployment in production-ready ML pipelines"
+        "Refined architecture to boost classification reliability, streamlining deployment in production-ready AI Systems"
       ]
     }
   ];
@@ -234,7 +245,7 @@ const HomePage = () => {
       school: "University of Maryland, College Park",
       location: "College Park, MD",
       period: "2024 - 2026",
-      gpa: "3.5/4.0",
+      gpa: "3.52/4.0",
       // description: "Specialized in Machine Learning, Deep Learning, and Natural Language Processing",
       coursework: ["Machine Learning", "Probability & Statistics", "NLP", "Computer Vision", "Data Science", "Multimodal Foundation Models", "Cloud Computing"]
     },
@@ -261,10 +272,10 @@ const HomePage = () => {
                 { name: 'Home', id: 'home' },
                 { name: 'About', id: 'about' },
                 { name: 'Projects', id: 'projects' },
-                { name: 'Skills', id: 'skills' },
-                { name: 'Certifications', id: 'certifications' },
-                { name: 'YouTube', id: 'youtube' },
                 { name: 'Medium', id: 'medium' },
+                { name: 'Skills', id: 'skills' },
+                { name: 'YouTube', id: 'youtube' },
+                { name: 'Certifications', id: 'certifications' },
                 { name: 'Experience', id: 'experience' },
                 { name: 'Education', id: 'education' },
                 { name: 'Contact', id: 'contact' }
@@ -299,10 +310,10 @@ const HomePage = () => {
                 { name: 'Home', id: 'home' },
                 { name: 'About', id: 'about' },
                 { name: 'Projects', id: 'projects' },
-                { name: 'Skills', id: 'skills' },
-                { name: 'Certifications', id: 'certifications' },
-                { name: 'YouTube', id: 'youtube' },
                 { name: 'Medium', id: 'medium' },
+                { name: 'Skills', id: 'skills' },
+                { name: 'YouTube', id: 'youtube' },
+                { name: 'Certifications', id: 'certifications' },
                 { name: 'Experience', id: 'experience' },
                 { name: 'Education', id: 'education' },
                 { name: 'Contact', id: 'contact' }
@@ -352,8 +363,8 @@ const HomePage = () => {
               View My Work
             </button>
             <a
-              href="/Jiten-Bhalavat-AI-Engineer.pdf"
-              download="Jiten-Bhalavat-AI-Engineer.pdf"
+              href="/Jiten_Bhalavat_Resume.pdf"
+              download="Jiten-Bhalavat-Resume.pdf"
               className="inline-flex items-center justify-center border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg font-medium hover:bg-blue-600 hover:text-white transition-colors text-lg"
             >
               <Download size={20} className="mr-2" />
@@ -501,8 +512,45 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Medium Articles Section */}
+      <section id="medium" className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <PenTool size={48} className="text-green-600 mx-auto mb-4" />
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Medium Articles</h2>
+            <p className="text-xl text-gray-600">Technical insights and tutorials</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {mediumArticles.map((article, index) => (
+              <div key={index} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-gray-500 text-sm">{article.date}</span>
+                  <span className="text-gray-500 text-sm">{article.readTime}</span>
+                </div>
+                <h3 className="font-bold text-gray-900 mb-3 text-lg">{article.title}</h3>
+                <p className="text-gray-600 mb-4">{article.excerpt}</p>
+                <div className="flex items-center justify-end">
+                  <a href={article.url} className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+                    Read More →
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link 
+              to="/medium"
+              className="inline-flex items-center bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+            >
+              View More Articles
+              <ExternalLink size={20} className="ml-2" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Skills & Expertise Section */}
-      <section id="skills" className="py-20 bg-white">
+      <section id="skills" className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <Award size={48} className="text-blue-600 mx-auto mb-4" />
@@ -511,7 +559,7 @@ const HomePage = () => {
           </div>
           <div className="grid lg:grid-cols-3 gap-8">
             {skillCategories.map((category, index) => (
-              <div key={index} className="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+              <div key={index} className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
                 <div className="flex items-center mb-6">
                   {category.icon}
                   <h3 className="text-xl font-bold text-gray-900 ml-3">{category.title}</h3>
@@ -534,51 +582,6 @@ const HomePage = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Certifications Section */}
-      <section id="certifications" className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Award size={48} className="text-blue-600 mx-auto mb-4" />
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Certifications</h2>
-            <p className="text-xl text-gray-600">Professional credentials and achievements</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {certifications.map((cert, index) => (
-              <a
-                key={index}
-                href={cert.verifyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 text-center group cursor-pointer transform hover:-translate-y-1 border border-gray-100"
-              >
-                <div className="mb-4">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">
-                    {cert.title}
-                  </h3>
-                  <h4 className="font-semibold text-blue-600 mb-3 text-sm group-hover:text-blue-800 transition-colors">
-                    {cert.issuer}
-                  </h4>
-                  <p className="text-gray-600 text-sm mb-4">{cert.date}</p>
-                  <div className="flex items-center justify-center text-blue-600 transition-opacity">
-                    <span className="text-xs mr-1">Verify Certificate</span>
-                    <ExternalLink size={12} />
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Link 
-              to="/certifications"
-              className="inline-flex items-center bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-            >
-              View More Certifications
-              <ExternalLink size={20} className="ml-2" />
-            </Link>
           </div>
         </div>
       </section>
@@ -640,37 +643,45 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Medium Articles Section */}
-      <section id="medium" className="py-20 bg-gray-50">
+      {/* Certifications Section */}
+      <section id="certifications" className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <PenTool size={48} className="text-green-600 mx-auto mb-4" />
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Medium Articles</h2>
-            <p className="text-xl text-gray-600">Technical insights and tutorials</p>
+            <Award size={48} className="text-blue-600 mx-auto mb-4" />
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Certifications</h2>
+            <p className="text-xl text-gray-600">Professional credentials and achievements</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {mediumArticles.map((article, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-gray-500 text-sm">{article.date}</span>
-                  <span className="text-gray-500 text-sm">{article.readTime}</span>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {certifications.map((cert, index) => (
+              <a
+                key={index}
+                href={cert.verifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 text-center group cursor-pointer transform hover:-translate-y-1 border border-gray-100"
+              >
+                <div className="mb-4">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">
+                    {cert.title}
+                  </h3>
+                  <h4 className="font-semibold text-blue-600 mb-3 text-sm group-hover:text-blue-800 transition-colors">
+                    {cert.issuer}
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4">{cert.date}</p>
+                  <div className="flex items-center justify-center text-blue-600 transition-opacity">
+                    <span className="text-xs mr-1">Verify Certificate</span>
+                    <ExternalLink size={12} />
+                  </div>
                 </div>
-                <h3 className="font-bold text-gray-900 mb-3 text-lg">{article.title}</h3>
-                <p className="text-gray-600 mb-4">{article.excerpt}</p>
-                <div className="flex items-center justify-end">
-                  <a href={article.url} className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                    Read More →
-                  </a>
-                </div>
-              </div>
+              </a>
             ))}
           </div>
           <div className="text-center mt-12">
             <Link 
-              to="/medium"
-              className="inline-flex items-center bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
+              to="/certifications"
+              className="inline-flex items-center bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
             >
-              View More Articles
+              View More Certifications
               <ExternalLink size={20} className="ml-2" />
             </Link>
           </div>
