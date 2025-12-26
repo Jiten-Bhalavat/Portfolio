@@ -16,6 +16,14 @@ export const allProjects = [
     demo: ""
   },
   {
+    title: "SGLang-vLLM-benchmarks",
+    description: "Benchmarked LLM inference performance by running three models across vLLM and SGLang frameworks. Deployed GPU-accelerated inference on AWS EC2 using Docker and CUDA, executing controlled load tests. Compared throughput, latency, and resource utilization to evaluate framework and model performance.",
+    image: "/images/sgland-vs-vllm.png",
+    tech: ["LLM Inference Benchmarking", "GPU-Accelerated Inference (CUDA, Docker)", "vLLM & SGLang"],
+    github: "https://github.com/Jiten-Bhalavat/SGLang-vLLM-benchmarks",
+    demo: ""
+  },
+  {
     title: "FoodChain AI Hackathon",
     description: "Provides personalized recommendations in under 5 seconds through a fast, user-friendly filter system without relying on chatbots.",
     image: "/images/foodchain-ai-hackathon.png",
