@@ -208,11 +208,11 @@ const HomePage = () => {
       period: "Sept 2023 - April 2024",
       // description: "Developing RAG-based document processing systems and fine-tuning LLMs for customer support automation.",
       achievements: [
-        "Architected Retrieval-Augmented Generation (RAG) document parsing pipeline, boosting data extraction accuracy from 45% to 89%, eliminating 15 hours/week of manual compliance review, using LlamaIndex and LangChain",
+        "Architected <strong>Retrieval-Augmented Generation (RAG)</strong> document parsing pipeline, boosting data extraction accuracy from 45% to 89%, eliminating <strong>15 hours/week</strong> of manual compliance review, using <strong>LlamaIndex and LangChain</strong>",
         "Improved chatbot answer relevance by 30% through optimized chunking and semantic search using Qdrant, Pinecone",
-        "Developed and deployed Flask-based REST APIs with PostgreSQL, enabling real-time inference under 200ms latency",
-        "Conducted model testing, monitoring, and failure analysis (15+ cases), improving response quality by 12%",
-        "Collaborated with cross-functional engineering teams to integrate AI solutions into production systems"
+        "Developed and deployed Flask-based <strong>REST APIs</strong> with <strong>PostgreSQL</strong>, enabling real-time inference under <strong>200ms latency</strong>",
+        "Conducted <strong>model testing, monitoring, and failure analysis</strong> (15+ cases), improving response quality by <strong>12%</strong>",
+        "Collaborated with cross-functional engineering teams to integrate <strong>AI solutions</strong> into production systems"
       ]
     },
     {
@@ -222,9 +222,9 @@ const HomePage = () => {
       period: "Apr 2023 - Jun 2023",
       // description: "Developing RAG-based document processing systems and fine-tuning LLMs for customer support automation.",
       achievements: [
-        "Trained a U-Net CNN architecture for MRI image segmentation, achieving 91% accuracy",
-        "Evaluated model performance using IoU and accuracy metrics, outperforming baseline CNNs by 15%",
-        "Applied advanced AI techniques in medical imaging, demonstrating the impact of AI professionals in healthcare"
+        "Trained a U-Net CNN architecture for MRI image segmentation, achieving <strong>91% accuracy</strong>",
+        "Evaluated model performance using IoU and accuracy metrics, outperforming baseline CNNs by <strong>15%</strong>",
+        "Applied advanced <strong>AI techniques</strong> in medical imaging, demonstrating the impact of <strong>AI professionals</strong> in healthcare"
       ]
     },
     {
@@ -234,9 +234,9 @@ const HomePage = () => {
       period: "May 2022 - June 2024",
       // description: "Conducted research on transformer architectures and contributed to open-source ML frameworks.",
       achievements: [
-        "Developed transformer-based AI solution using Parameter-Efficient Fine-Tuning (PEFT) with LoRA on T5, reducing trainable parameters by 99% while achieving 60% faster training convergence on distributed multi-GPU infrastructure",
-        "Built scalable MLOps pipeline with PyTorch DDP across 60K+ training steps, implementing automated checkpointing, monitoring, and model evaluation workflows that reduced debugging cycles by 40%",
-        "Optimized model performance across 10 programming languages using CodeBLEU evaluation metrics and beam search,enabling robust multi-language code intelligence"
+        "Developed transformer-based <strong>AI solution</strong> using <strong>Parameter-Efficient Fine-Tuning (PEFT)</strong> with <strong>LoRA</strong> on T5, reducing trainable parameters by 99% while achieving 60% faster training convergence on <strong>distributed multi-GPU infrastructure</strong>",
+        "Built <strong>scalable MLOps pipeline</strong> with <strong>PyTorch DDP</strong> across 60K+ training steps, implementing automated checkpointing, monitoring, and <strong>model evaluation workflows</strong> that reduced debugging cycles by 40%",
+        "Optimized model performance across 10 programming languages using <strong>CodeBLEU</strong> evaluation metrics and <strong>beam search</strong>, enabling robust multi-language code intelligence"
       ]
     }
   ];
@@ -728,7 +728,7 @@ const HomePage = () => {
                       {job.achievements.map((achievement, achIndex) => (
                         <li key={achIndex} className="flex items-start">
                           <span className="text-blue-600 mr-2">•</span>
-                          <span className="text-gray-700">{achievement}</span>
+                          <span className="text-gray-700" dangerouslySetInnerHTML={{ __html: achievement }} />
                         </li>
                       ))}
                     </ul>
