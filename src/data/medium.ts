@@ -1,15 +1,15 @@
 export const allMediumArticles = [
   {
     title: "Excalidraw MCP: Turning Agent Markdown into Instant Diagrams",
-    excerpt: "Ugly ASCII Workflow diagram One of the most underrated bottlenecks in technical learning and system design is visualization. We understand concepts faster when we see them, yet creating diagrams...",
+    excerpt: "Excalidraw MCP is one of the best MCP servers to boost your productivity - turn agent-generated Markdown into clean, instant diagrams in seconds, and you definitely won't regret using it",
     readTime: "2 min read",
     date: "Feb 18, 2026",
     url: "https://infinityai.medium.com/excalidraw-mcp-turning-agent-markdown-into-instant-diagrams-64ab8471fd67",
     tags: ["mcp-server", "excalidraw", "software-development", "claude-ai", "claude-code"]
   },
   {
-    title: "Claude Code Just Ended Manual Coding for me — My Step-by-Step Guide to 3x Faster Builds in 2026",
-    excerpt: "Claude Code Just Ended Manual Coding for me — My Step-by-Step Guide to 3x Faster Builds in 2026 I lost hours switching branches and fixing merge conflicts every week. Features stalled. Context...",
+    title: "Claude Code Just Ended Manual Coding for me -My Step-by-Step Guide to 3x Faster Builds in 2026",
+    excerpt: "My Step-by-Step Guide to 3x Faster Builds in 2026 I lost hours switching branches and fixing merge conflicts every week. Features stalled. Context...",
     readTime: "1 min read",
     date: "Feb 9, 2026",
     url: "https://infinityai.medium.com/claude-code-just-ended-manual-coding-for-me-my-step-by-step-guide-to-3x-faster-builds-in-2026-f7f2abe8f611",
