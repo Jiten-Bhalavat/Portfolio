@@ -1,0 +1,50 @@
+# Sync Medium articles to Portfolio
+# Runs on schedule and when manually triggered.
+# When new Medium posts are detected, updates src/data/medium.ts and pushes to GitHub.
+# Cloudflare Pages auto-deploys on push.
+
+name: Sync Medium to Portfolio
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    # Allow manual trigger from Actions tab
+
+permissions:
+  contents: write  # Required to push changes
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sync Medium articles
+        id: sync
+        run: |
+          node scripts/sync-medium.mjs
+          # Check if medium.ts changed
+          if git diff --quiet src/data/medium.ts; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push
+        if: steps.sync.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add src/data/medium.ts
+          git commit -m "chore: sync Medium articles from RSS"
+          git push

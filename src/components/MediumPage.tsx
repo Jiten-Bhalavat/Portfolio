@@ -57,10 +57,14 @@ const MediumPage = () => {
               </div>
               
               <div className="flex items-center justify-between">
-                <div className="flex items-center text-green-600 text-sm font-medium">
-                  <ThumbsUp size={14} className="mr-1" />
-                  <span>{article.claps} claps</span>
-                </div>
+                {article.claps ? (
+                  <div className="flex items-center text-green-600 text-sm font-medium">
+                    <ThumbsUp size={14} className="mr-1" />
+                    <span>{article.claps} claps</span>
+                  </div>
+                ) : (
+                  <div />
+                )}
                 {article.url !== "#" ? (
                   <a 
                     href={article.url} 

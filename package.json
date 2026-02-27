@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "sync-medium": "node scripts/sync-medium.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },
