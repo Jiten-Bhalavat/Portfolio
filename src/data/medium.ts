@@ -28,7 +28,7 @@ export const allMediumArticles = [
     excerpt: "The RAG Checklist That Exposes Your 10-Line Pipeline 𝗬𝗼𝘂 𝗱𝗼𝗻’𝘁 𝗸𝗻𝗼𝘄 𝗥𝗔𝗚!! Just because you connected Embeddings → VectorDB → Query → Result, doesn’t mean you “know RAG.” That’s not...",
     readTime: "2 min read",
     date: "Oct 12, 2025",
-    url: "https://pub.towardsai.net/think-you-know-rag-take-this-16-point-checklist-and-prove-it-wrong-4fe75c0448bc",
+    url: "https://infinityai.medium.com/think-you-know-rag-take-this-16-point-checklist-and-prove-it-wrong-4fe75c0448bc",
     tags: ["rags", "top-5", "llamaparse", "how-to-parse-pdf", "generative-ai-tools"]
   },
   {
@@ -36,7 +36,7 @@ export const allMediumArticles = [
     excerpt: "This is your Data, yes, Garbage. If you’re still relying on PyPDF / PyMuPDF / pdfplumber for parsing, your RAG pipeline is already broken at the data layer . No matter how advanced your workflow is...",
     readTime: "5 min read",
     date: "Sep 5, 2025",
-    url: "https://pub.towardsai.net/3-proven-techniques-to-accurately-parse-your-pdfs-2c01c5badb84",
+    url: "https://infinityai.medium.com/3-proven-techniques-to-accurately-parse-your-pdfs-2c01c5badb84",
     tags: ["generative-ai", "parsing-techniques", "agentic-ai", "retrieval-augmented-gen", "artificial-intelligence"]
   },
   {
