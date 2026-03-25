@@ -40,6 +40,14 @@ export const allProjects = [
     demo: "https://main.dv8lgo1pwq1w6.amplifyapp.com/"
   },
   {
+    title: "Learn Docker by visualizing",
+    description: "A web-based learning game that teaches Docker through 15 interactive, animated levels. Each level focuses on a specific topic—from “What is Docker?” to real-world deployment—with visualizations, terminal-style demos, and concept notes.",
+    image: "/images/docker-game.png",
+    tech: ["Vibe Coding", "Typescript", "Claude Code","React", "Framer Motion"],
+    github: "https://github.com/Jiten-Bhalavat/docker-explorer-quest",
+    demo: "https://github.com/user-attachments/assets/079c79de-9969-48a9-b015-81c3543840d6"
+  },
+  {
     title: "AI Voice Translator",
     description: "A multilingual voice translation system that converts spoken input into accurate translations across multiple languages using SST and TTS",
     image: "images/Voice Translator.png",
