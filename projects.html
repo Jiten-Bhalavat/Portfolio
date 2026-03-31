@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Jiten Bhalavat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(160deg, #fffaf5 0%, #f0ece8 50%, #ebedee 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ── Nav ── */
+        .navbar {
+            background: transparent;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .nav-links { display: flex; gap: 10px; list-style: none; }
+        .nav-links a {
+            color: #2d2926; text-decoration: none; font-size: 0.88em; font-weight: 600;
+            padding: 8px 18px; border: 2px solid #2d2926; border-radius: 50px; transition: all 0.2s;
+        }
+        .nav-links a:hover { background: #2d2926; color: #fff; }
+        .mobile-menu-toggle { display: none; flex-direction: column; cursor: pointer; padding: 10px; gap: 5px; }
+        .mobile-menu-toggle span { width: 24px; height: 2px; background: #2d2926; transition: 0.3s; }
+
+        /* ── Back Link ── */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 16px 24px 0;
+            color: #2d2926;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: #c96b30; }
+
+        /* ── Page Header ── */
+        .page-header {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px 24px 0;
+        }
+        .page-header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #2d2926;
+            display: inline-block;
+            border-bottom: 3px solid #c96b30;
+            padding-bottom: 4px;
+        }
+        .page-header p {
+            color: #888;
+            margin-top: 8px;
+            font-size: 0.95em;
+        }
+
+        /* ── Overview ── */
+        .project-overview {
+            max-width: 1100px;
+            margin: 32px auto 0;
+            padding: 0 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .overview-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            border-bottom: 1px solid #e8e8e8;
+            text-decoration: none;
+            color: inherit;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+        .overview-row:first-child { border-top: 1px solid #e8e8e8; }
+        .overview-row:hover { background: rgba(201,107,48,0.04); }
+        .overview-num {
+            font-size: 1.4em;
+            font-weight: 800;
+            color: rgba(201,107,48,0.25);
+            min-width: 36px;
+        }
+        .overview-info { flex: 1; }
+        .overview-title {
+            font-size: 1em;
+            font-weight: 700;
+            color: #2d2926;
+        }
+        .overview-desc {
+            font-size: 0.78em;
+            color: #999;
+            margin-top: 2px;
+        }
+        .overview-count {
+            font-size: 0.72em;
+            font-weight: 600;
+            color: #888;
+            background: #f0f0f0;
+            padding: 3px 10px;
+            border-radius: 50px;
+            white-space: nowrap;
+        }
+        .overview-arrow {
+            color: #ccc;
+            font-size: 0.8em;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .overview-row:hover .overview-arrow {
+            color: #c96b30;
+            transform: translateX(3px);
+        }
+
+        /* ── Stacked Groups ── */
+        .stacked-groups {
+            max-width: 1100px;
+            margin: 96px auto 0;
+            padding: 0 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+        .stack-group {
+            position: relative;
+        }
+        .stack-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .stack-num {
+            font-size: 2.4em;
+            font-weight: 800;
+            color: rgba(201,107,48,0.15);
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+        .stack-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #2d2926;
+        }
+        .stack-desc {
+            font-size: 0.82em;
+            color: #999;
+            margin-top: 2px;
+        }
+        .stack-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* ── Project Cards ── */
+        .project-card {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .project-card:hover {
+            box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+        }
+
+        /* Card Header */
+        .card-header {
+            padding: 24px 28px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .card-header-left h3 {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #2d2926;
+            line-height: 1.3;
+        }
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .card-tags span {
+            background: #f0f0f0;
+            color: #666;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.72em;
+            font-weight: 600;
+        }
+        .card-label {
+            font-size: 0.68em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+            background: #c96b30;
+            padding: 4px 10px;
+            border-radius: 50px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Card Body */
+        .card-body {
+            padding: 0 28px 24px;
+        }
+        .card-body p {
+            font-size: 0.88em;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        .card-body p:last-child { margin-bottom: 0; }
+        .card-result {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #fff7f0;
+            border: 1px solid #ffe0c2;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.82em;
+            font-weight: 600;
+            color: #c96b30;
+            margin-top: 4px;
+        }
+
+        /* Card Footer */
+        .card-footer {
+            padding: 0 28px 22px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: #2d2926;
+            text-decoration: none;
+            font-size: 0.82em;
+            font-weight: 700;
+            padding: 8px 16px;
+            border: 2px solid #2d2926;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .github-link:hover {
+            background: #2d2926;
+            color: #fff;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            background: #2d2926;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 24px 0;
+            margin-top: 60px;
+            font-size: 0.88em;
+        }
+        .footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+        .footer a:hover { color: #fff; }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            .navbar { padding: 12px 20px; }
+            .mobile-menu-toggle { display: flex; }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 56px; left: 0; right: 0;
+                background: rgba(255,250,245,0.97);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            }
+            .nav-links a { width: 100%; text-align: center; }
+            .nav-links.active { display: flex; }
+            .card-header { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="mobile-menu-toggle" id="mobile-toggle">
+            <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blogs.html">Blog</a></li>
+            <li><a href="timeline.html">Experience</a></li>
+            <li><a href="papers.html">Achievements</a></li>
+            <li><a href="Jiten_Bhalavat_Resume.pdf" target="_blank">Resume</a></li>
+        </ul>
+    </nav>
+
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    <div class="page-header">
+        <h1>Projects</h1>
+        <p>What I built, how I built it, and what it achieved.</p>
+    </div>
+
+    <!-- ── Overview ── -->
+    <div class="project-overview">
+        <a href="#llm-apps" class="overview-row">
+            <span class="overview-num">01</span>
+            <div class="overview-info">
+                <div class="overview-title">LLM & Voice AI Apps</div>
+                <div class="overview-desc">AI agents, voice interfaces, MCP systems, and end-to-end AI products</div>
+            </div>
+            <span class="overview-count">5 projects</span>
+            <i class="fas fa-arrow-right overview-arrow"></i>
+        </a>
+        <a href="#ml-research" class="overview-row">
+            <span class="overview-num">02</span>
+            <div class="overview-info">
+                <div class="overview-title">ML Research & Fine-tuning</div>
+                <div class="overview-desc">Fine-tuned open-source LLMs with GRPO/LoRA and benchmarked inference frameworks</div>
+            </div>
+            <span class="overview-count">2 projects</span>
+            <i class="fas fa-arrow-right overview-arrow"></i>
+        </a>
+        <a href="#tools-platforms" class="overview-row">
+            <span class="overview-num">03</span>
+            <div class="overview-info">
+                <div class="overview-title">Platforms & Tools</div>
+                <div class="overview-desc">AI-powered platforms for education, productivity, and learning</div>
+            </div>
+            <span class="overview-count">3 projects</span>
+            <i class="fas fa-arrow-right overview-arrow"></i>
+        </a>
+    </div>
+
+    <!-- ── Stacked Groups ── -->
+    <div class="stacked-groups">
+
+        <!-- 01 LLM & Voice AI Apps -->
+        <div class="stack-group" id="llm-apps">
+            <div class="stack-header">
+                <span class="stack-num">01</span>
+                <div>
+                    <div class="stack-title">LLM & Voice AI Apps</div>
+                    <div class="stack-desc">AI agents, voice interfaces, MCP systems, and end-to-end AI products</div>
+                </div>
+            </div>
+            <div class="stack-cards">
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <h3>InterviewAI &mdash; Speech-to-Speech Mock Interview Platform</h3>
+                            <div class="card-tags">
+                                <span>ElevenLabs</span><span>Speech-to-Speech</span><span>GCP</span><span>Firebase</span><span>TypeScript</span>
+                            </div>
+                        </div>
+                        <span class="card-label">Featured</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Job seekers struggle to get realistic interview practice &mdash; AI can fill this gap with real-time, conversational mock interviews.</p>
+                        <p>Built an AI-powered mock interview platform combining speech-to-speech AI (ElevenLabs) with expert-led sessions. Users speak their answers and receive immediate AI-driven evaluation and verbal feedback.</p>
+                        <p><span class="card-result"><i class="fas fa-check"></i> Real-time voice AI &middot; LLM-based answer evaluation &middot; GCP + Firebase backend</span></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://www.youtube.com/watch?v=eOW6wfB_ov0" target="_blank" class="github-link" style="background:#FF0000; color:#fff; border-color:#FF0000;"><i class="fab fa-youtube"></i> Watch Demo</a>
+                        <a href="https://github.com/Jiten-Bhalavat/" target="_blank" class="github-link"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <h3>MCP Expense Tracker</h3>
+                            <div class="card-tags">
+                                <span>MCP Server</span><span>Claude Desktop</span><span>FastMCP</span><span>Python</span>
+                            </div>
+                        </div>
+                        <span class="card-label">New</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Traditional expense apps require navigating UIs &mdash; what if you could manage expenses through natural language with an AI assistant?</p>
+                        <p>Built an expense tracking system using Model Context Protocol (MCP), enabling Claude to manage and interact with expense data via natural language. Eliminates the need for a traditional UI entirely.</p>
+                        <p><span class="card-result"><i class="fas fa-check"></i> Natural language expense management &middot; Claude Desktop integration &middot; FastMCP Cloud deployment</span></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/Jiten-Bhalavat/Expense-Tracker-MCP" target="_blank" class="github-link"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <h3>Personal AI Agent</h3>
+                            <div class="card-tags">
+                                <span>AI Agent</span><span>Firecrawl</span><span>Phidata</span><span>Multi-Agent</span><span>Text-to-Speech</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>An AI agent that answers any question about you on your behalf, using real-time web data and context-aware intelligence. Acts as a personal representative powered by live information.</p>
+                        <p><span class="card-result"><i class="fas fa-check"></i> Multi-agent architecture &middot; Real-time web data via Firecrawl &middot; Text-to-speech responses</span></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/Jiten-Bhalavat/Personal-AI-Agent" target="_blank" class="github-link"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <h3>AI Voice Translator</h3>
+                            <div class="card-tags">
+                                <span>OpenAI Whisper</span><span>Speech-to-Text</span><span>Text-to-Speech</span><span>LLMs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>A multilingual voice translation system that converts spoken input into accurate translations across multiple languages using speech recognition and synthesis.</p>
+                        <p><span class="card-result"><i class="fas fa-check"></i> Multi-language support &middot; OpenAI Whisper STT &middot; End-to-end voice pipeline</span></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/Jiten-Bhalavat/Voice-Translator" target="_blank" class="github-link"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <h3>FoodChain AI Hackathon</h3>
+                            <div class="card-tags">
+                                <span>Voice AI</span><span>Firebase</span><span>AWS</span><span>TypeScript</span><span>Amplify</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Provides personalized food recommendations in under 5 seconds through a fast, voice-driven filter system without relying on traditional chatbots.</p>
+                        <p><span class="card-result"><i class="fas fa-check"></i> &lt;5s recommendations &middot; Voice AI &middot; AWS Amplify deployment</span></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://main.dv8lgo1pwq1w6.amplifyapp.com/" target="_blank" class="github-link" style="background:#FFD21E; color:#000; border-color:#FFD21E;"><i class="fas fa-play"></i> Try It Live</a>
+                        <a href="https://github.com/Jiten-Bhalavat/FoodChain-AI" target="_blank" class="github-link"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02 ML Research & Fine-tuning -->
+        <div class="stack-group" id="ml-research">
+            <div class="stack-header">
+                <span class="stack-num">02</span>
+                <div>
+                    <div class="stack-title">ML Research & Fine-tuning</div>
+                    <div class="stack-desc">Fine-tuned open-source LLMs with GRPO/LoRA and benchmarked inference frameworks</div>
+                </div>
+            </div>
+            <div class="stack-cards">
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <h3>Finetuning Llama 3.1 8B with GRPO</h3>
+                            <div class="card-tags">
+                                <span>Llama 3.1 8B</span><span>GRPO</span><span>LoRA</span><span>4-bit Quantization</span><span>PyTorch</span>
+                            </div>
+                        </div>
+                        <span class="card-label">New</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Reproducing DeepSeek-R1-style reasoning capabilities in an open-source model requires careful RL fine-tuning &mdash; most tutorials skip the hard parts.</p>
+                        <p>Fine-tuned Llama 3.1 8B for math reasoning using GRPO + LoRA, with a custom reward function based on symbolic equivalence checking. Enabled consumer-GPU training via 4-bit quantization.</p>
+                        <p><span class="card-result"><i class="fas fa-check"></i> 78.5% GSM8K accuracy &middot; LoRA + GRPO pipeline &middot; Consumer GPU via 4-bit QLoRA</span></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/Jiten-Bhalavat/Finetuning-Llama3.1-8B-with-GRPO" target="_blank" class="github-link"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <h3>SGLang vs vLLM Benchmarks</h3>
+                            <div class="card-tags">
+                                <span>vLLM</span><span>SGLang</span><span>CUDA</span><span>Docker</span><span>AWS EC2</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Choosing the right inference framework can 2-3x your throughput &mdash; but most comparisons are shallow and don't test real-world conditions.</p>
+                        <p>Benchmarked LLM inference performance by running three models across vLLM and SGLang on AWS EC2 with GPU-accelerated Docker. Measured throughput, latency, and resource utilization under controlled load.</p>
+                        <p><span class="card-result"><i class="fas fa-check"></i> 3 models benchmarked &middot; AWS EC2 GPU deployment &middot; Throughput &amp; latency analysis</span></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/Jiten-Bhalavat/SGLang-vLLM-benchmarks" target="_blank" class="github-link"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03 Platforms & Tools -->
+        <div class="stack-group" id="tools-platforms">
+            <div class="stack-header">
+                <span class="stack-num">03</span>
+                <div>
+                    <div class="stack-title">Platforms & Tools</div>
+                    <div class="stack-desc">AI-powered platforms for education, productivity, and learning</div>
+                </div>
+            </div>
+            <div class="stack-cards">
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <h3>ClassTopper &mdash; AI-Powered Exam Preparation Platform</h3>
+                            <div class="card-tags">
+                                <span>Multi-Model RAG</span><span>Qdrant</span><span>FastAPI</span><span>Firebase</span><span>React</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Students spend hours creating study materials manually &mdash; AI can generate personalized quizzes, mind maps, and flashcards instantly from their notes.</p>
+                        <p>Platform using multi-model RAG to help students prepare for exams with personalized study materials, practice questions, mind maps, and more.</p>
+                        <p><span class="card-result"><i class="fas fa-check"></i> Multi-Model RAG &middot; Qdrant vector DB &middot; Hackathon winner on Devpost</span></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://devpost.com/software/class-topper" target="_blank" class="github-link" style="background:#FFD21E; color:#000; border-color:#FFD21E;"><i class="fas fa-play"></i> View on Devpost</a>
+                        <a href="https://github.com/Jiten-Bhalavat/ClassTopper" target="_blank" class="github-link"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <h3>Learn Docker by Visualizing</h3>
+                            <div class="card-tags">
+                                <span>React</span><span>TypeScript</span><span>Framer Motion</span><span>Claude Code</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Docker documentation is dense and abstract &mdash; most people learn best by seeing and interacting, not just reading.</p>
+                        <p>A web-based learning game with 15 interactive, animated levels teaching Docker from "What is Docker?" to real-world deployment. Built with vibe-coding using Claude Code.</p>
+                        <p><span class="card-result"><i class="fas fa-check"></i> 15 interactive levels &middot; Animated visualizations &middot; Terminal-style demos</span></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/Jiten-Bhalavat/docker-explorer-quest" target="_blank" class="github-link"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <h3>Cover Letter Generator Extension</h3>
+                            <div class="card-tags">
+                                <span>Claude Code</span><span>Cursor</span><span>Browser Extension</span>
+                            </div>
+                        </div>
+                        <span class="card-label">In Progress</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Writing a tailored cover letter for each job posting takes 10+ minutes &mdash; a browser extension can do it instantly from the job description and your resume.</p>
+                        <p>Browser extension that instantly generates tailored cover letters from any job posting using your resume. Saves ~10 minutes per application, built with vibe-coding.</p>
+                        <p><span class="card-result"><i class="fas fa-check"></i> One-click generation &middot; Resume-aware &middot; ~10 min saved per application</span></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://github.com/Jiten-Bhalavat/Cover-letter-extension" target="_blank" class="github-link"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Jiten Bhalavat &middot; <a href="https://github.com/Jiten-Bhalavat/" target="_blank">GitHub</a></p>
+    </footer>
+
+    <script>
+        // Animate project cards with stagger
+        const projectCards = document.querySelectorAll('.project-card');
+        let delay = 0;
+        const projObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, delay);
+                    delay += 80;
+                    projObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.05 });
+
+        projectCards.forEach(card => {
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            projObserver.observe(card);
+        });
+
+        document.getElementById('mobile-toggle').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

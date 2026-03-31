@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Jiten Bhalavat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(160deg, #fffaf5 0%, #f0ece8 50%, #ebedee 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ── Nav ── */
+        .navbar {
+            background: transparent;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .nav-links { display: flex; gap: 10px; list-style: none; }
+        .nav-links a {
+            color: #2d2926; text-decoration: none; font-size: 0.88em; font-weight: 600;
+            padding: 8px 18px; border: 2px solid #2d2926; border-radius: 50px; transition: all 0.2s;
+        }
+        .nav-links a:hover { background: #2d2926; color: #fff; }
+        .mobile-menu-toggle { display: none; flex-direction: column; cursor: pointer; padding: 10px; gap: 5px; }
+        .mobile-menu-toggle span { width: 24px; height: 2px; background: #2d2926; transition: 0.3s; }
+
+        /* ── Back Link ── */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 16px 24px 0;
+            color: #2d2926;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: #c96b30; }
+
+        /* ── Container ── */
+        .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+        .content-layer {
+            background: rgba(255,255,255,0.45);
+            border: 1px solid rgba(0,0,0,0.04);
+            border-radius: 16px;
+            padding: 32px 28px;
+            margin-top: 16px;
+        }
+
+        /* ── Page Header ── */
+        .page-header {
+            padding: 0;
+        }
+        .page-header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #2d2926;
+            display: inline-block;
+            border-bottom: 3px solid #c96b30;
+            padding-bottom: 4px;
+        }
+        .page-header p {
+            color: #666;
+            margin-top: 8px;
+        }
+
+        /* ── Stats ── */
+        .blog-stats {
+            display: flex;
+            gap: 24px;
+            margin: 24px 0;
+        }
+        .stat-item { display: flex; flex-direction: column; gap: 2px; }
+        .stat-number { font-size: 1.6em; font-weight: 700; color: #c96b30; }
+        .stat-label { font-size: 0.85em; color: #999; }
+
+        /* ── Filters ── */
+        .topic-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 16px 0 32px;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #e8e8e8;
+            background: #fff;
+            color: #555;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 500;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .filter-btn:hover { border-color: #c96b30; color: #c96b30; }
+        .filter-btn.active {
+            background: #c96b30;
+            color: #fff;
+            border-color: #c96b30;
+        }
+
+        /* ── Blog Items ── */
+        .blog-list { display: flex; flex-direction: column; gap: 0; }
+        .blog-item {
+            padding: 24px 0;
+            border-bottom: 1px solid #e8e8e8;
+            transition: all 0.3s ease;
+        }
+        .blog-item:last-child { border-bottom: none; }
+        .blog-item.hidden { display: none; }
+        .blog-item.visible { animation: fadeIn 0.4s ease; }
+        .blog-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: 0;
+        }
+        .blog-title a {
+            color: #2d2926;
+            text-decoration: none;
+        }
+        .blog-title a:hover { color: #c96b30; }
+        .blog-meta {
+            font-size: 0.85em;
+            color: #999;
+            margin: 4px 0;
+        }
+        .blog-excerpt {
+            margin: 8px 0 0;
+            font-size: 0.92em;
+            color: #666;
+            line-height: 1.6;
+        }
+        .tags { margin-top: 8px; }
+        .tag {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            color: #555;
+            margin-right: 4px;
+            font-weight: 500;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Footer ── */
+        .footer {
+            background: #2d2926;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 24px 0;
+            margin-top: 60px;
+            font-size: 0.88em;
+        }
+        .footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+        .footer a:hover { color: #fff; }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            .navbar { padding: 12px 20px; }
+            .mobile-menu-toggle { display: flex; }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 56px; left: 0; right: 0;
+                background: rgba(255,250,245,0.97);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            }
+            .nav-links a { width: 100%; text-align: center; }
+            .nav-links.active { display: flex; }
+            .page-header h1 { font-size: 1.8em; }
+            .blog-title { font-size: 1.05em; }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 { font-size: 1.5em; }
+            .blog-excerpt { font-size: 0.85em; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="mobile-menu-toggle" id="mobile-toggle">
+            <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="timeline.html">Experience</a></li>
+            <li><a href="papers.html">Achievements</a></li>
+            <li><a href="Jiten_Bhalavat_Resume.pdf" target="_blank">Resume</a></li>
+        </ul>
+    </nav>
+
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    <div class="container">
+        <div class="content-layer">
+        <div class="page-header">
+            <h1>Writing &amp; Articles</h1>
+            <p>Practical guides on AI agents, RAG, voice AI, and building with LLMs</p>
+        </div>
+
+        <div class="blog-stats">
+            <div class="stat-item">
+                <span class="stat-number" id="total-blogs">9</span>
+                <span class="stat-label">Total Articles</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="visible-blogs">9</span>
+                <span class="stat-label">Showing</span>
+            </div>
+        </div>
+
+        <div class="topic-filters">
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-th"></i> All Topics
+            </button>
+            <button class="filter-btn" data-filter="Agents">
+                <i class="fas fa-robot"></i> Agents
+            </button>
+            <button class="filter-btn" data-filter="RAG">
+                <i class="fas fa-search"></i> RAG
+            </button>
+            <button class="filter-btn" data-filter="LLMs">
+                <i class="fas fa-brain"></i> LLMs
+            </button>
+            <button class="filter-btn" data-filter="Productivity">
+                <i class="fas fa-bolt"></i> Productivity
+            </button>
+            <button class="filter-btn" data-filter="Cloud">
+                <i class="fas fa-cloud"></i> Cloud
+            </button>
+        </div>
+
+        <main>
+            <div class="blog-list" id="blog-list">
+                <div class="blog-item" data-topics="Agents,LLMs">
+                    <h2 class="blog-title">
+                        <a href="https://infinityai.medium.com/excalidraw-mcp-turning-agent-markdown-into-instant-diagrams-64ab8471fd67" target="_blank">Excalidraw MCP: Turning Agent Markdown into Instant Diagrams</a>
+                    </h2>
+                    <div class="blog-meta">Medium &middot; Agents &amp; MCP</div>
+                    <p class="blog-excerpt">
+                        How to connect Claude agents to Excalidraw via Model Context Protocol to auto-generate beautiful diagrams from markdown output — no manual diagramming needed.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Agents</span>
+                        <span class="tag">MCP</span>
+                        <span class="tag">Claude</span>
+                        <span class="tag">Excalidraw</span>
+                    </div>
+                </div>
+
+                <div class="blog-item" data-topics="Productivity,LLMs">
+                    <h2 class="blog-title">
+                        <a href="https://infinityai.medium.com/claude-code-just-ended-manual-coding-for-me-my-step-by-step-guide-to-3x-faster-builds-in-2026-f7f2abe8f611" target="_blank">Claude Code Just Ended Manual Coding for Me: My Step-by-Step Guide to 3x Faster Builds in 2026</a>
+                    </h2>
+                    <div class="blog-meta">Medium &middot; Productivity &amp; AI</div>
+                    <p class="blog-excerpt">
+                        My step-by-step guide to 3x faster software builds using Claude Code for agentic development — what changed, what works, and what doesn't.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Claude Code</span>
+                        <span class="tag">Productivity</span>
+                        <span class="tag">AI Tools</span>
+                    </div>
+                </div>
+
+                <div class="blog-item" data-topics="RAG,LLMs">
+                    <h2 class="blog-title">
+                        <a href="https://infinityai.medium.com/think-you-know-rag-take-this-16-point-checklist-and-prove-it-wrong-4fe75c0448bc" target="_blank">Think You Know RAG? Take This 16-Point Checklist and Prove It Wrong</a>
+                    </h2>
+                    <div class="blog-meta">Medium &middot; RAG &amp; LLMs</div>
+                    <p class="blog-excerpt">
+                        A comprehensive 16-point checklist to evaluate and improve your RAG pipelines. Most people get at least 5 of these wrong — and one of them will surprise you.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">RAG</span>
+                        <span class="tag">LLMs</span>
+                        <span class="tag">Vector DB</span>
+                    </div>
+                </div>
+
+                <div class="blog-item" data-topics="RAG,LLMs">
+                    <h2 class="blog-title">
+                        <a href="https://infinityai.medium.com/3-proven-techniques-to-accurately-parse-your-pdfs-2c01c5badb84" target="_blank">3 Proven Techniques to Accurately Parse Your PDFs</a>
+                    </h2>
+                    <div class="blog-meta">Medium &middot; RAG &amp; Document AI</div>
+                    <p class="blog-excerpt">
+                        PDF parsing is a bottleneck for most RAG systems. These 3 techniques dramatically improve extraction accuracy and downstream retrieval quality.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">RAG</span>
+                        <span class="tag">PDF Parsing</span>
+                        <span class="tag">Document AI</span>
+                    </div>
+                </div>
+
+                <div class="blog-item" data-topics="Agents,LLMs">
+                    <h2 class="blog-title">
+                        <a href="https://infinityai.medium.com/how-to-create-your-personal-ai-agent-part-2-a28729b6f8c7" target="_blank">How to Create Your Personal AI Agent — Part 2</a>
+                    </h2>
+                    <div class="blog-meta">Medium &middot; AI Agents</div>
+                    <p class="blog-excerpt">
+                        Part 2 of building a personal AI agent: adding memory, tool use, and real-time web data via Firecrawl to make your agent truly context-aware.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">AI Agent</span>
+                        <span class="tag">Firecrawl</span>
+                        <span class="tag">Memory</span>
+                    </div>
+                </div>
+
+                <div class="blog-item" data-topics="Agents,LLMs">
+                    <h2 class="blog-title">
+                        <a href="https://infinityai.medium.com/how-to-create-your-personal-ai-agent-part-1-1a6423966911" target="_blank">How to Create Your Personal AI Agent — Part 1</a>
+                    </h2>
+                    <div class="blog-meta">Medium &middot; AI Agents</div>
+                    <p class="blog-excerpt">
+                        Getting started with building a personal AI agent from scratch using Phidata — architecture, tools, and first steps.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">AI Agent</span>
+                        <span class="tag">Phidata</span>
+                        <span class="tag">LLMs</span>
+                    </div>
+                </div>
+
+                <div class="blog-item" data-topics="LLMs,Cloud">
+                    <h2 class="blog-title">
+                        <a href="https://infinityai.medium.com/how-to-run-llama3-phi3-on-your-local-pc-using-ollama-b84213b2960a" target="_blank">How to Run Llama3 &amp; Phi3 on Your Local PC Using Ollama</a>
+                    </h2>
+                    <div class="blog-meta">Medium &middot; Local LLMs</div>
+                    <p class="blog-excerpt">
+                        Step-by-step guide to running open-source LLMs (Llama 3, Phi-3) locally using Ollama — no GPU cloud required.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Ollama</span>
+                        <span class="tag">Local LLMs</span>
+                        <span class="tag">Llama 3</span>
+                    </div>
+                </div>
+
+                <div class="blog-item" data-topics="LLMs">
+                    <h2 class="blog-title">
+                        <a href="https://infinityai.medium.com/ollama-connecterror-errno-99-cannot-assign-requested-address-f0facad8027a" target="_blank">Ollama ConnectError: errno 99 — Cannot Assign Requested Address (Fix)</a>
+                    </h2>
+                    <div class="blog-meta">Medium &middot; Debugging</div>
+                    <p class="blog-excerpt">
+                        Quick fix for the common Ollama network binding error when running local LLMs — covers the root cause and exact solution.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Ollama</span>
+                        <span class="tag">Debugging</span>
+                        <span class="tag">LLMs</span>
+                    </div>
+                </div>
+
+                <div class="blog-item" data-topics="Cloud,LLMs">
+                    <h2 class="blog-title">
+                        <a href="https://infinityai.medium.com/no-coding-required-create-a-powerful-chatbot-on-google-clouds-vertex-ai-a82a2e503094" target="_blank">No Coding Required: Create a Powerful Chatbot on Google Cloud's Vertex AI</a>
+                    </h2>
+                    <div class="blog-meta">Medium &middot; Cloud AI</div>
+                    <p class="blog-excerpt">
+                        How to build and deploy a powerful AI chatbot on Google Cloud's Vertex AI without writing a single line of code — a complete walkthrough.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Google Cloud</span>
+                        <span class="tag">Vertex AI</span>
+                        <span class="tag">Chatbot</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Jiten Bhalavat &middot; <a href="https://github.com/Jiten-Bhalavat/">GitHub</a> &middot; <a href="https://www.linkedin.com/in/jiten-bhalavat/">LinkedIn</a></p>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const blogItems = document.querySelectorAll('.blog-item');
+        const visibleBlogsSpan = document.getElementById('visible-blogs');
+
+        function filterBlogs(filter) {
+            let visibleCount = 0;
+            blogItems.forEach(item => {
+                const topics = item.getAttribute('data-topics') || '';
+                const topicArray = topics.split(',').map(t => t.trim());
+                if (filter === 'all' || topicArray.includes(filter)) {
+                    item.classList.remove('hidden');
+                    item.classList.add('visible');
+                    visibleCount++;
+                } else {
+                    item.classList.add('hidden');
+                    item.classList.remove('visible');
+                }
+            });
+            visibleBlogsSpan.textContent = visibleCount;
+            filterButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-filter') === filter);
+            });
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => filterBlogs(button.getAttribute('data-filter')));
+        });
+
+        filterBlogs('all');
+
+        // Mobile nav
+        document.getElementById('mobile-toggle').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jiten Bhalavat | ML / AI Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(160deg, #fffaf5 0%, #f0ece8 50%, #ebedee 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ── Nav ── */
+        .navbar {
+            background: transparent;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .nav-name {
+            font-size: 1.15em;
+            font-weight: 700;
+            color: #2d2926;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #2d2926;
+            text-decoration: none;
+            font-size: 0.88em;
+            font-weight: 600;
+            padding: 8px 18px;
+            border: 2px solid #2d2926;
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover {
+            background: #2d2926;
+            color: #fff;
+        }
+        .nav-links .nav-icon {
+            padding: 8px 12px;
+            font-size: 1em;
+        }
+        .nav-links .nav-icon-linkedin { border-color: #0A66C2; color: #0A66C2; }
+        .nav-links .nav-icon-linkedin:hover { background: #0A66C2; color: #fff; }
+        .nav-links .nav-icon-github { border-color: #24292e; color: #24292e; }
+        .nav-links .nav-icon-github:hover { background: #24292e; color: #fff; }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            gap: 5px;
+        }
+        .mobile-menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background: #2d2926;
+            transition: 0.3s;
+        }
+
+        /* ── Container ── */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 48px 0 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+        }
+        .hero-text {
+            flex: 1;
+        }
+        .hero-text h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            color: #2d2926;
+            line-height: 1.1;
+            display: inline-block;
+            border-bottom: 3px solid #c96b30;
+            padding-bottom: 4px;
+        }
+        .hero-subtitle {
+            font-size: 1.05em;
+            font-weight: 600;
+            color: #888;
+            margin-top: 8px;
+            letter-spacing: 0.02em;
+        }
+        .hero-text .tagline {
+            font-size: 0.92em;
+            color: #555;
+            max-width: 100%;
+            line-height: 1.85;
+            margin-top: 16px;
+        }
+        .tagline .hl {
+            background: rgba(201,107,48,0.08);
+            border: 1px solid rgba(201,107,48,0.18);
+            padding: 2px 7px;
+            border-radius: 4px;
+            color: #b85d28;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .hero-context {
+            margin-top: 16px;
+            font-size: 0.85em;
+            color: #777;
+            line-height: 1.7;
+        }
+        .hero-context span {
+            color: #555;
+            font-weight: 600;
+        }
+
+        /* ── Featured Highlight ── */
+        .hero-featured {
+            width: 260px;
+            flex-shrink: 0;
+            align-self: center;
+        }
+        .featured-card {
+            background: linear-gradient(145deg, #fff9ed 0%, #fff4de 100%);
+            border: 2px solid #ffd960;
+            border-radius: 14px;
+            padding: 22px 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+            box-shadow: 0 4px 16px rgba(255, 217, 96, 0.25);
+        }
+        .featured-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(255, 217, 96, 0.4);
+        }
+        .featured-label {
+            font-size: 0.68em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #c96b30;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .featured-label i {
+            font-size: 0.9em;
+            animation: flicker 1.2s ease-in-out infinite alternate;
+        }
+        @keyframes flicker {
+            0%   { opacity: 1; transform: scale(1) rotate(0deg); }
+            25%  { opacity: 0.85; transform: scale(1.15) rotate(-4deg); }
+            50%  { opacity: 1; transform: scale(1.05) rotate(2deg); }
+            75%  { opacity: 0.9; transform: scale(1.2) rotate(-2deg); }
+            100% { opacity: 1; transform: scale(1.1) rotate(3deg); }
+        }
+        .featured-card h3 {
+            font-size: 0.95em;
+            font-weight: 700;
+            color: #2d2926;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        .featured-stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .featured-stat .stat-num {
+            font-size: 1.5em;
+            font-weight: 800;
+            color: #c96b30;
+            line-height: 1;
+        }
+        .featured-stat .stat-text {
+            font-size: 0.75em;
+            color: #888;
+            line-height: 1.3;
+        }
+        .featured-link {
+            font-size: 0.78em;
+            font-weight: 600;
+            color: #0A66C2;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* ── Section ── */
+        .section { padding: 28px 0; }
+        .section-title {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #2d2926;
+            margin-bottom: 16px;
+            display: inline-block;
+            border-bottom: 3px solid #c96b30;
+            padding-bottom: 4px;
+        }
+
+        /* ── Past Work Cards ── */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .work-card {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 16px;
+            padding: 0;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        .work-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+        }
+        .work-card-header {
+            padding: 28px 28px 20px;
+            position: relative;
+        }
+        .work-card-header {
+            background: linear-gradient(135deg, #c96b30 0%, #d98b56 100%);
+        }
+        .work-card-header .work-company {
+            font-size: 0.78em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 6px;
+        }
+        .work-card-header .work-role {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.3;
+        }
+        .work-card-header .work-date {
+            font-size: 0.82em;
+            color: rgba(255,255,255,0.7);
+            margin-top: 8px;
+        }
+        .work-card-body {
+            padding: 24px 28px 28px;
+        }
+        .work-card-body p {
+            font-size: 0.93em;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .work-stats {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .work-stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff7f0;
+            border: 1px solid #ffe0c2;
+            border-radius: 8px;
+            padding: 8px 14px;
+        }
+        .work-stat .stat-num {
+            font-size: 1.3em;
+            font-weight: 800;
+            color: #c96b30;
+        }
+        .work-stat .stat-label {
+            font-size: 0.78em;
+            color: #888;
+            line-height: 1.3;
+        }
+        .work-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #0A66C2;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .work-card-link:hover { color: #084a8a; }
+        .work-card-link i { font-size: 0.9em; }
+
+        /* ── Featured Projects ── */
+        .project-spotlight {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .project-spotlight:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+        }
+        .spotlight-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        .spotlight-top h3 {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #2d2926;
+        }
+        .spotlight-top h3 .accent {
+            color: #c96b30;
+        }
+        .spotlight-body {
+            display: flex;
+            gap: 28px;
+            align-items: flex-start;
+        }
+        .spotlight-text {
+            flex: 1;
+        }
+        .spotlight-text p {
+            font-size: 0.9em;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 10px;
+            background: rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.04);
+            border-radius: 8px;
+            padding: 12px 16px;
+        }
+        .spotlight-text .detail-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .detail-list li {
+            font-size: 0.87em;
+            color: #777;
+            line-height: 1.6;
+            padding-left: 18px;
+            position: relative;
+        }
+        .detail-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 6px;
+            height: 6px;
+            background: #c96b30;
+            border-radius: 50%;
+        }
+        .detail-list li:nth-child(2)::before { background: #d98b56; }
+        .detail-list li:nth-child(3)::before { background: #b85d28; }
+        .detail-list li:nth-child(4)::before { background: #e8a06a; }
+        .detail-list li:nth-child(5)::before { background: #a04e1e; }
+        .detail-list li strong {
+            color: #1a5fb4;
+        }
+        .spotlight-pipeline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+        .pipeline-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            width: 100%;
+            background: #fff7f0;
+            border: 1px solid #ffe0c2;
+            border-radius: 6px;
+            padding: 5px 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: #b85d28;
+        }
+        .pipeline-step i { font-size: 0.85em; }
+        .pipeline-arrow {
+            color: #ccc;
+            font-size: 0.75em;
+        }
+        .spotlight-sidebar {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: 200px;
+        }
+        .sidebar-label {
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #aaa;
+        }
+        .spotlight-stack {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+        .stack-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f7f7f7;
+            border-radius: 6px;
+            padding: 7px 12px;
+            font-size: 0.78em;
+            font-weight: 600;
+            color: #555;
+        }
+        .stack-item i { color: #c96b30; font-size: 0.9em; width: 14px; text-align: center; }
+        .spotlight-footer {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 14px;
+        }
+        .project-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .project-card {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .project-label {
+            display: inline-block;
+            background: #c96b30;
+            color: #fff;
+            font-size: 0.7em;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .project-card h3 {
+            font-size: 1.1em;
+            color: #2d2926;
+            margin-bottom: 8px;
+        }
+        .project-card p {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+        .project-tags span {
+            background: #f0f0f0;
+            color: #555;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.78em;
+            font-weight: 500;
+        }
+        .project-link {
+            color: #b85d28;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: color 0.2s;
+        }
+        .project-link:hover { color: #c96b30; text-decoration: underline; }
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #24292e;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .github-btn:hover {
+            background: #000;
+            transform: translateY(-1px);
+        }
+        .view-all {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            color: #2d2926;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.88em;
+            padding: 10px 20px;
+            background: #ffd960;
+            border: none;
+            border-radius: 50px;
+            transition: all 0.25s ease;
+        }
+        .view-all:hover {
+            background: #ffce3a;
+            transform: translateY(-1px);
+        }
+        .view-all i {
+            font-size: 0.8em;
+            transition: transform 0.25s ease;
+        }
+        .view-all:hover i {
+            transform: translateX(3px);
+        }
+
+
+        /* ── Blog Posts ── */
+        .blog-section {
+            background: rgba(255,255,255,0.45);
+            border: 1px solid rgba(0,0,0,0.04);
+            border-radius: 16px;
+            padding: 28px 24px;
+        }
+        .blog-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .blog-item {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 16px 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .blog-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        .blog-item h4 {
+            font-size: 1em;
+            color: #2d2926;
+            margin-bottom: 4px;
+        }
+        .blog-item h4 a {
+            color: #2d2926;
+            text-decoration: none;
+        }
+        .blog-item h4 a:hover { color: #b85d28; }
+        .blog-item .blog-meta {
+            font-size: 0.85em;
+            color: #999;
+        }
+        .blog-item .blog-excerpt {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        /* ── Contact ── */
+        .contact-grid {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.92em;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .contact-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .contact-item i { font-size: 1.2em; }
+
+        /* ── Footer ── */
+        .footer {
+            background: #2d2926;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 24px 0;
+            margin-top: 32px;
+            font-size: 0.88em;
+        }
+        .footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+        .footer a:hover { color: #fff; }
+
+        /* ── Mobile ── */
+        @media (max-width: 900px) {
+            .project-row, .work-grid {
+                grid-template-columns: 1fr;
+            }
+            .spotlight-body {
+                flex-direction: column;
+            }
+            .spotlight-sidebar {
+                width: 100%;
+            }
+            .spotlight-stack {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .spotlight-pipeline {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .pipeline-step {
+                width: auto;
+            }
+            .hero {
+                flex-wrap: wrap;
+            }
+            .hero-featured {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 12px 20px; }
+            .mobile-menu-toggle { display: flex; }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 56px;
+                left: 0;
+                right: 0;
+                background: rgba(255,250,245,0.97);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            }
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+            }
+            .nav-links.active { display: flex; }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 28px 0 16px;
+                gap: 24px;
+            }
+            .hero-text h1 { font-size: 2em; }
+            .hero-featured { width: 100%; }
+
+            .section { padding: 20px 0; }
+            .section-title { font-size: 1.4em; }
+
+            .contact-grid { flex-direction: column; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 1.7em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Nav -->
+    <nav class="navbar">
+        <div class="mobile-menu-toggle" id="mobile-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#blogs">Blogs</a></li>
+            <li><a href="timeline.html">Experience</a></li>
+            <li><a href="papers.html">Achievements</a></li>
+            <li><a href="Jiten_Bhalavat_Resume.pdf" target="_blank">Resume</a></li>
+            <li><a href="https://www.linkedin.com/in/jiten-bhalavat/" target="_blank" class="nav-icon nav-icon-linkedin"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://github.com/Jiten-Bhalavat/" target="_blank" class="nav-icon nav-icon-github"><i class="fab fa-github"></i></a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Jiten Bhalavat</h1>
+                <p class="hero-subtitle">ML / AI Engineer &mdash; RAG, Fine-tuning, Voice AI</p>
+                <p class="tagline">Excited about building <span class="hl">AI agents</span> that work end-to-end, <span class="hl">voice AI</span> systems that break language barriers, and <span class="hl">fine-tuning</span> open-source LLMs to outperform larger closed models.</p>
+                <p class="hero-context">
+                    <span>Currently:</span> MS in Applied Machine Learning at University of Maryland, College Park<br>
+                    <span>Previously:</span> AI Engineer Intern at Plutomen Technologies &middot; ML Engineer Intern at Nxon
+                </p>
+            </div>
+            <div class="hero-featured">
+                <a href="https://github.com/Jiten-Bhalavat/Expense-Tracker-MCP" target="_blank" class="featured-card">
+                    <div class="featured-label"><i class="fas fa-fire"></i> Featured</div>
+                    <h3>MCP Expense Tracker &mdash; Natural language expense management via Claude</h3>
+                    <div class="featured-stat">
+                        <span class="stat-num">MCP</span>
+                        <span class="stat-text">Model Context<br>Protocol</span>
+                    </div>
+                    <span class="featured-link"><i class="fas fa-arrow-right"></i> View on GitHub</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- My Best Past Work -->
+        <section class="section">
+            <h2 class="section-title">My Best Past Work</h2>
+            <div class="work-grid">
+                <div class="work-card">
+                    <div class="work-card-header">
+                        <div class="work-company">Plutomen Technologies &middot; Gujarat, India</div>
+                        <div class="work-role">AI Engineer Intern</div>
+                        <div class="work-date">Sept 2023 &ndash; April 2024</div>
+                    </div>
+                    <div class="work-card-body">
+                        <p>Built RAG pipelines for document intelligence achieving 89% data extraction accuracy. Optimized a customer-facing chatbot using semantic search and shipped Flask REST APIs with sub-200ms latency.</p>
+                        <div class="work-stats">
+                            <div class="work-stat">
+                                <span class="stat-num">89%</span>
+                                <span class="stat-label">data extraction<br>accuracy</span>
+                            </div>
+                            <div class="work-stat">
+                                <span class="stat-num">&lt;200ms</span>
+                                <span class="stat-label">API<br>latency</span>
+                            </div>
+                        </div>
+                        <a href="https://www.linkedin.com/in/jiten-bhalavat/" target="_blank" class="work-card-link"><i class="fab fa-linkedin"></i> View profile</a>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <div class="work-card-header">
+                        <div class="work-company">Nxon &middot; Gujarat, India</div>
+                        <div class="work-role">ML Engineer Intern</div>
+                        <div class="work-date">May 2022 &ndash; June 2024</div>
+                    </div>
+                    <div class="work-card-body">
+                        <p>Built transformer-based AI with LoRA fine-tuning and a scalable MLOps pipeline using PyTorch DDP. Delivered code intelligence features across 10 programming languages.</p>
+                        <div class="work-stats">
+                            <div class="work-stat">
+                                <span class="stat-num">10</span>
+                                <span class="stat-label">languages<br>supported</span>
+                            </div>
+                            <div class="work-stat">
+                                <span class="stat-num">LoRA</span>
+                                <span class="stat-label">fine-tuning<br>approach</span>
+                            </div>
+                        </div>
+                        <a href="https://www.linkedin.com/in/jiten-bhalavat/" target="_blank" class="work-card-link"><i class="fab fa-linkedin"></i> View profile</a>
+                    </div>
+                </div>
+            </div>
+            <a href="timeline.html" class="view-all">View Full Timeline <i class="fas fa-arrow-right"></i></a>
+        </section>
+
+
+        <!-- Featured Projects -->
+        <section class="section">
+            <h2 class="section-title" id="projects">Projects</h2>
+
+            <!-- Spotlight: InterviewAI -->
+            <div class="project-spotlight">
+                <div class="spotlight-top">
+                    <h3 style="color: #c96b30;">InterviewAI &mdash; Speech-to-Speech Mock Interview Platform</h3>
+                    <span class="project-label">Featured</span>
+                </div>
+                <div class="spotlight-body">
+                    <div class="spotlight-text">
+                        <p>AI-powered mock interview platform combining real-time speech-to-speech AI with expert-led sessions. Uses <strong style="color:#2d2926;">ElevenLabs</strong> for voice synthesis, GCP for backend, and Firebase for auth &mdash; giving job seekers AI-driven practice and expert feedback in one place.</p>
+                        <ul class="detail-list">
+                            <li><strong>Voice pipeline:</strong> Real-time <strong>Speech-to-Speech</strong> using <strong>ElevenLabs</strong> for natural conversational AI interactions</li>
+                            <li><strong>Cloud backend:</strong> <strong>Google Cloud Platform</strong> for scalable hosting and ML inference serving</li>
+                            <li><strong>Auth &amp; DB:</strong> <strong>Firebase</strong> for authentication and real-time data synchronization</li>
+                            <li><strong>Frontend:</strong> <strong>TypeScript</strong> with responsive UI for a seamless interview experience</li>
+                            <li><strong>AI evaluation:</strong> LLM-based feedback on answer quality, clarity, and communication structure</li>
+                        </ul>
+                        <div class="spotlight-footer">
+                            <a href="https://www.youtube.com/watch?v=eOW6wfB_ov0" target="_blank" class="github-btn" style="background:#FF0000; color:#fff;"><i class="fab fa-youtube"></i> Watch Demo</a>
+                            <a href="https://github.com/Jiten-Bhalavat/" target="_blank" class="github-btn"><i class="fab fa-github"></i> View on GitHub</a>
+                            <span style="font-size:0.82em; color:#888;">Real-time voice AI &middot; GCP + Firebase &middot; TypeScript</span>
+                        </div>
+                    </div>
+                    <div class="spotlight-sidebar">
+                        <div class="spotlight-stack">
+                            <div class="stack-item"><i class="fas fa-microphone"></i> ElevenLabs</div>
+                            <div class="stack-item"><i class="fab fa-google"></i> GCP</div>
+                            <div class="stack-item"><i class="fas fa-fire"></i> Firebase</div>
+                            <div class="stack-item"><i class="fas fa-code"></i> TypeScript</div>
+                            <div class="stack-item"><i class="fas fa-robot"></i> Voice AI</div>
+                            <div class="stack-item"><i class="fas fa-brain"></i> LLM</div>
+                        </div>
+                        <div class="sidebar-label">Interview Flow</div>
+                        <div class="spotlight-pipeline">
+                            <span class="pipeline-step">Question</span>
+                            <span class="pipeline-step">Speech Input</span>
+                            <span class="pipeline-step">Transcribe</span>
+                            <span class="pipeline-step">LLM Evaluate</span>
+                            <span class="pipeline-step">Voice Reply</span>
+                            <span class="pipeline-step">Feedback</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spotlight: Finetuning Llama3.1 8B with GRPO -->
+            <div class="project-spotlight">
+                <div class="spotlight-top">
+                    <h3 style="color: #c96b30;">Finetuning Llama 3.1 8B with GRPO</h3>
+                    <span class="project-label">New</span>
+                </div>
+                <div class="spotlight-body">
+                    <div class="spotlight-text">
+                        <p>Fine-tuned Llama 3.1 8B for math reasoning using GRPO reinforcement learning + LoRA, achieving <strong style="color:#2d2926;">78.5% GSM8K accuracy</strong>. Enabled efficient consumer-GPU training via 4-bit quantization without quality loss.</p>
+                        <ul class="detail-list">
+                            <li><strong>Training method:</strong> <strong>GRPO</strong> (Group Relative Policy Optimization) for RL fine-tuning with verifiable math rewards</li>
+                            <li><strong>Parameter efficiency:</strong> <strong>LoRA</strong> adapters for lightweight fine-tuning on a 4-bit quantized base model</li>
+                            <li><strong>Reward design:</strong> Custom reward function for math problem verification using symbolic equivalence checking</li>
+                            <li><strong>Evaluation:</strong> GSM8K benchmark achieving <strong>78.5% accuracy</strong> &mdash; competitive with much larger models</li>
+                            <li><strong>Hardware:</strong> Consumer GPU training via <strong>4-bit QLoRA</strong> quantization &mdash; no expensive A100 needed</li>
+                        </ul>
+                        <div class="spotlight-footer">
+                            <a href="https://github.com/Jiten-Bhalavat/Finetuning-Llama3.1-8B-with-GRPO" target="_blank" class="github-btn"><i class="fab fa-github"></i> View on GitHub</a>
+                            <span style="font-size:0.82em; color:#888;"><strong style="color:#2d2926;">78.5% GSM8K</strong> accuracy &middot; 4-bit quantization &middot; Consumer GPU</span>
+                        </div>
+                    </div>
+                    <div class="spotlight-sidebar">
+                        <div class="spotlight-stack">
+                            <div class="stack-item"><i class="fab fa-python"></i> Python</div>
+                            <div class="stack-item"><i class="fas fa-fire"></i> PyTorch</div>
+                            <div class="stack-item"><i class="fas fa-cubes"></i> HuggingFace</div>
+                            <div class="stack-item"><i class="fas fa-cogs"></i> LoRA</div>
+                            <div class="stack-item"><i class="fas fa-chart-line"></i> GRPO</div>
+                            <div class="stack-item"><i class="fas fa-microchip"></i> CUDA</div>
+                        </div>
+                        <div class="sidebar-label">Training Pipeline</div>
+                        <div class="spotlight-pipeline">
+                            <span class="pipeline-step">Llama 3.1 8B</span>
+                            <span class="pipeline-step">4-bit Quantize</span>
+                            <span class="pipeline-step">LoRA Adapters</span>
+                            <span class="pipeline-step">GRPO Training</span>
+                            <span class="pipeline-step">Reward Verify</span>
+                            <span class="pipeline-step">78.5% GSM8K</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="projects.html" class="view-all">View All Projects <i class="fas fa-arrow-right"></i></a>
+        </section>
+
+
+
+        <!-- Latest Blog Posts -->
+        <section class="section" id="blogs">
+            <h2 class="section-title">Latest Blog Posts</h2>
+            <div class="blog-list">
+                <div class="blog-item">
+                    <h4><a href="https://infinityai.medium.com/excalidraw-mcp-turning-agent-markdown-into-instant-diagrams-64ab8471fd67" target="_blank">Excalidraw MCP: Turning Agent Markdown into Instant Diagrams</a></h4>
+                    <div class="blog-meta">Medium &middot; Agents &amp; MCP</div>
+                    <p class="blog-excerpt">How to connect Claude agents to Excalidraw via Model Context Protocol to auto-generate beautiful diagrams from markdown output.</p>
+                </div>
+                <div class="blog-item">
+                    <h4><a href="https://infinityai.medium.com/claude-code-just-ended-manual-coding-for-me-my-step-by-step-guide-to-3x-faster-builds-in-2026-f7f2abe8f611" target="_blank">Claude Code Just Ended Manual Coding for Me</a></h4>
+                    <div class="blog-meta">Medium &middot; Productivity &amp; AI</div>
+                    <p class="blog-excerpt">My step-by-step guide to 3x faster builds in 2026 using Claude Code for agentic software development.</p>
+                </div>
+                <div class="blog-item">
+                    <h4><a href="https://infinityai.medium.com/think-you-know-rag-take-this-16-point-checklist-and-prove-it-wrong-4fe75c0448bc" target="_blank">Think You Know RAG? Take This 16-Point Checklist</a></h4>
+                    <div class="blog-meta">Medium &middot; RAG &amp; LLMs</div>
+                    <p class="blog-excerpt">A comprehensive 16-point checklist to evaluate and improve your RAG pipelines. Most people get at least 5 of these wrong.</p>
+                </div>
+            </div>
+            <a href="blogs.html" class="view-all">Read All Posts <i class="fas fa-arrow-right"></i></a>
+        </section>
+
+        <!-- Contact -->
+        <section class="section" id="contact">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-grid">
+                <a href="mailto:jbha0504@umd.edu" class="contact-item">
+                    <i class="fas fa-envelope" style="color:#EA4335;"></i> jbha0504@umd.edu
+                </a>
+                <a href="https://github.com/Jiten-Bhalavat/" target="_blank" class="contact-item">
+                    <i class="fab fa-github" style="color:#171515;"></i> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/jiten-bhalavat/" target="_blank" class="contact-item">
+                    <i class="fab fa-linkedin" style="color:#0A66C2;"></i> LinkedIn
+                </a>
+                <a href="https://infinityai.medium.com/" target="_blank" class="contact-item">
+                    <i class="fab fa-medium" style="color:#000;"></i> Medium
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Jiten Bhalavat &middot; <a href="https://github.com/Jiten-Bhalavat/" target="_blank">GitHub</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-toggle').addEventListener('click', function() {
+            document.getElementById('nav-links').classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-links').classList.remove('active');
+            });
+        });
+
+    </script>
+</body>
+</html>
