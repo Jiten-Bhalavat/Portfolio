@@ -137,27 +137,67 @@
             font-weight: 600;
         }
 
-        /* ── Featured Highlight ── */
+        /* ── Photo Stack ── */
         .hero-featured {
             width: 260px;
             flex-shrink: 0;
             align-self: center;
         }
-        .featured-card {
-            background: linear-gradient(145deg, #fff9ed 0%, #fff4de 100%);
-            border: 2px solid #ffd960;
-            border-radius: 14px;
-            padding: 22px 20px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-decoration: none;
+        .photo-stack {
+            position: relative;
+            width: 220px;
+            height: 260px;
+            margin: 0 auto;
+        }
+        .photo-card {
+            position: absolute;
+            width: 200px;
+            height: 230px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+        }
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
-            color: inherit;
-            box-shadow: 0 4px 16px rgba(255, 217, 96, 0.25);
         }
-        .featured-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(255, 217, 96, 0.4);
+        .photo-card-back {
+            top: 16px;
+            left: 16px;
+            transform: rotate(6deg);
+            z-index: 1;
         }
+        .photo-card-front {
+            top: 0;
+            left: 0;
+            transform: rotate(-3deg);
+            z-index: 2;
+            transition: transform 0.4s ease, z-index 0s;
+            cursor: pointer;
+        }
+        .photo-stack.flipped .photo-card-front {
+            transform: rotate(6deg) translate(20px, 16px);
+            z-index: 1;
+        }
+        .photo-stack.flipped .photo-card-back {
+            transform: rotate(-3deg) translate(-16px, -16px);
+            z-index: 2;
+        }
+        .photo-card-back {
+            transition: transform 0.4s ease;
+            cursor: pointer;
+        }
+        .photo-label {
+            font-size: 0.72em;
+            font-weight: 600;
+            color: #c96b30;
+            text-align: center;
+            margin-top: 12px;
+            line-height: 1.4;
+        }
+        .photo-label i { margin-right: 4px; }
         .featured-label {
             font-size: 0.68em;
             font-weight: 700;
@@ -426,6 +466,8 @@
             flex-direction: column;
             gap: 14px;
             width: 200px;
+            min-width: 0;
+            overflow: hidden;
         }
         .sidebar-label {
             font-size: 0.7em;
@@ -445,10 +487,14 @@
             gap: 6px;
             background: #f7f7f7;
             border-radius: 6px;
-            padding: 7px 12px;
-            font-size: 0.78em;
+            padding: 7px 8px;
+            font-size: 0.75em;
             font-weight: 600;
             color: #555;
+            min-width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
         .stack-item i { color: #c96b30; font-size: 0.9em; width: 14px; text-align: center; }
         .spotlight-footer {
@@ -753,15 +799,15 @@
                 </p>
             </div>
             <div class="hero-featured">
-                <a href="https://github.com/Jiten-Bhalavat/Expense-Tracker-MCP" target="_blank" class="featured-card">
-                    <div class="featured-label"><i class="fas fa-fire"></i> Featured</div>
-                    <h3>MCP Expense Tracker &mdash; Natural language expense management via Claude</h3>
-                    <div class="featured-stat">
-                        <span class="stat-num">MCP</span>
-                        <span class="stat-text">Model Context<br>Protocol</span>
+                <div class="photo-stack">
+                    <div class="photo-card photo-card-back">
+                        <img src="images/Jiten-Bhalavat-Graph.jpg" alt="Jiten Bhalavat presenting data insights" />
                     </div>
-                    <span class="featured-link"><i class="fas fa-arrow-right"></i> View on GitHub</span>
-                </a>
+                    <div class="photo-card photo-card-front">
+                        <img src="images/Jiten-Bhalavat-Speaking-1.jpg" alt="Jiten Bhalavat speaking at AI event" />
+                    </div>
+                </div>
+                <div class="photo-label"><i class="fas fa-microphone-alt"></i> From Insights to Intelligence &mdash; AI &amp; ML Hackathon</div>
             </div>
         </section>
 
@@ -961,6 +1007,10 @@
     </footer>
 
     <script>
+        document.querySelector('.photo-stack').addEventListener('click', function() {
+            this.classList.toggle('flipped');
+        });
+
         document.getElementById('mobile-toggle').addEventListener('click', function() {
             document.getElementById('nav-links').classList.toggle('active');
         });
