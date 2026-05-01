@@ -207,7 +207,7 @@ const HomePage = () => {
 
   const workExperience = [
     {
-      title: "ML Engineer Intern",
+      title: "ML Engineer Internsssss",
       company: "Plutomen technologies Pvt. Ltd.",
       location: "Gujarat, India",
       period: "Sept 2023 - April 2024",
