@@ -107,6 +107,11 @@ const CertificationsPage = () => {
                   {cert.issuer}
                 </h4>
                 <p className="text-gray-600 text-sm mb-4">{cert.date}</p>
+                {cert.description && (
+                  <p className="text-gray-600 text-sm mb-4 leading-relaxed text-left">
+                    {cert.description}
+                  </p>
+                )}
                 <div className="flex items-center justify-center text-blue-600 transition-opacity">
                   <span className="text-xs mr-1">Verify Certificate</span>
                   <ExternalLink size={12} />

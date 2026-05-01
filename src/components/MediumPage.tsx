@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { PenTool, ArrowLeft, ExternalLink, Clock, ThumbsUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { allMediumArticles } from '../data/medium';
 
 const MediumPage = () => {
+  const [activeFilter, setActiveFilter] = useState<string>('all');
+
+  const availableTags = useMemo(() => {
+    const tags = new Set<string>();
+    allMediumArticles.forEach((article) => {
+      article.tags.forEach((tag) => tags.add(tag));
+    });
+    return ['all', ...Array.from(tags).sort()];
+  }, []);
+
+  const filteredArticles = useMemo(() => {
+    if (activeFilter === 'all') {
+      return allMediumArticles;
+    }
+    return allMediumArticles.filter((article) => article.tags.includes(activeFilter));
+  }, [activeFilter]);
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
@@ -27,10 +43,35 @@ const MediumPage = () => {
         </div>
       </div>
 
-      {/* Articles Grid */}
+      {/* Topic Filters */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="mb-8 flex flex-wrap gap-2">
+          {availableTags.map((tag) => {
+            const isActive = activeFilter === tag;
+            const label = tag === 'all' ? 'All Topics' : tag;
+            return (
+              <button
+                key={tag}
+                onClick={() => setActiveFilter(tag)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  isActive
+                    ? 'bg-green-600 text-white'
+                    : 'bg-white text-gray-700 border border-gray-300 hover:border-green-400 hover:text-green-700'
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
+
+        <p className="text-sm text-gray-600 mb-6">
+          Showing {filteredArticles.length} article{filteredArticles.length === 1 ? '' : 's'}
+          {activeFilter !== 'all' ? ` for "${activeFilter}"` : ''}.
+        </p>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allMediumArticles.map((article, index) => (
+          {filteredArticles.map((article, index) => (
             <article key={index} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow group">
               <div className="flex items-center justify-between mb-4 text-sm text-gray-500">
                 <span>{article.date}</span>
@@ -82,6 +123,12 @@ const MediumPage = () => {
             </article>
           ))}
         </div>
+
+        {filteredArticles.length === 0 && (
+          <div className="text-center py-10 text-gray-500">
+            No articles found for this topic yet.
+          </div>
+        )}
 
         {/* Profile Link */}
         <div className="text-center mt-12">

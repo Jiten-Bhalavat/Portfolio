@@ -406,13 +406,19 @@ const HomePage = () => {
               </div>
               <div className="space-y-6 text-lg text-gray-600 leading-relaxed text-justify">
                 <p>
-                Hey there! I’m Jiten Bhalavat, part time data scientist, part time <strong>Startup Dreamer</strong> , and full-time <strong>curious Human</strong>. I’ve worn a bunch of hats so far: from <strong>leading data science clubs</strong> and <strong>winning hackathons</strong> to building retrieval-augmented chatbots that can actually talk back without hallucinating (most of the time). I’ve dabbled in everything from emotion detection and video analytics to cleaning the messiest of datasets that looked like they’d been through a blender.
+                  I always start by understanding what the user actually needs, study the problem deeply, and then build solutions that solve it <strong>end-to-end</strong>. I work on AI systems like <strong>RAG pipelines</strong> and <strong>LLM fine-tuning</strong>, with a focus on building <strong>agents</strong> that can reason and take actions.
                 </p>
-                <p>I’m a strong believer that good tech should be smart, simple, and a little bit magical, which is why I’m always exploring new models, trends, and opportunities to build something meaningful (or at least mildly impressive). Outside of code, <strong>I've managed events</strong>, <strong>mentored peers</strong>, and spent far too much time figuring out why my <strong>code worked perfectly at 2 AM but refused to cooperate at 9.</strong> Basically, if it involves <strong>AI</strong>, <strong>storytelling</strong>, or <strong>solving real-world problems</strong>, I’m all in, with a cup of <strong>Expresso</strong> in hand.
+                <p>
+                  I am also exploring <strong>post-training</strong> and <strong>scalable inference</strong>, while building <strong>voice AI</strong> systems and fine-tuning open-source models to compete with larger systems.
                 </p>
-                
+                <p className="text-base text-gray-500">
+                  <strong>Currently:</strong> MS in Applied Machine Learning at University of Maryland, College Park
+                  <br />
+                  <strong>Previously:</strong> ML Engineer Intern at Plutomen Technologies and Research Assistant at CHARUSAT
+                </p>
+
                 <div className="flex flex-wrap gap-3 mt-8">
-                  {['AI/ML', 'Python', 'Deep Learning', 'NLP', 'Computer Vision', 'LLMs', 'Startup', 'Hackathons'].map((tag) => (
+                  {['RAG Pipelines', 'LLM Fine-Tuning', 'AI Agents', 'Post-Training', 'Scalable Inference', 'Voice AI'].map((tag) => (
                     <span key={tag} className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
                       {tag}
                     </span>
@@ -670,6 +676,11 @@ const HomePage = () => {
                     {cert.issuer}
                   </h4>
                   <p className="text-gray-600 text-sm mb-4">{cert.date}</p>
+                  {cert.description && (
+                    <p className="text-gray-600 text-sm mb-4 leading-relaxed text-left">
+                      {cert.description}
+                    </p>
+                  )}
                   <div className="flex items-center justify-center text-blue-600 transition-opacity">
                     <span className="text-xs mr-1">Verify Certificate</span>
                     <ExternalLink size={12} />
