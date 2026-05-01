@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { 
   Github, 
   Linkedin, 
@@ -308,12 +308,9 @@ const HomePage = () => {
             <div className="hidden md:flex space-x-8">
               {[
                 { name: 'Home', id: 'home' },
-                { name: 'About', id: 'about' },
                 { name: 'Projects', id: 'projects' },
                 { name: 'Experience', id: 'experience' },
                 { name: 'Blogs', id: 'blogs' },
-                { name: 'Skills', id: 'skills' },
-                { name: 'YouTube', id: 'youtube' },
                 { name: 'Certifications', id: 'certifications' },
                 { name: 'Education', id: 'education' },
                 { name: 'Contact', id: 'contact' }
@@ -346,12 +343,9 @@ const HomePage = () => {
             <div className="px-2 pt-2 pb-3 space-y-1">
               {[
                 { name: 'Home', id: 'home' },
-                { name: 'About', id: 'about' },
                 { name: 'Projects', id: 'projects' },
                 { name: 'Experience', id: 'experience' },
                 { name: 'Blogs', id: 'blogs' },
-                { name: 'Skills', id: 'skills' },
-                { name: 'YouTube', id: 'youtube' },
                 { name: 'Certifications', id: 'certifications' },
                 { name: 'Education', id: 'education' },
                 { name: 'Contact', id: 'contact' }
@@ -442,13 +436,13 @@ const HomePage = () => {
               </div>
               <div className="space-y-5 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  I'm doing my MS in Machine Learning at UMD — but honestly, most of my time goes into <strong>building things</strong>, not just studying them.
+                  I'm doing my MS in Machine Learning at UMD, but honestly, most of my time goes into <strong>building things</strong>, not just studying them.
                 </p>
                 <p>
-                  I've spent the last couple of years deep in RAG and LLMs. Not the tutorial kind — I've debugged why chunking kills retrieval, traced hallucinations back to bad context windows, and shipped APIs that hold up in prod. Fine-tuning is a big thing for me too: got <strong>Llama 3.1 8B to 78.5% on GSM8K</strong> using GRPO + LoRA on a consumer GPU. Shouldn't work on cheap hardware, but it does if you push hard enough.
+                  I've spent the last couple of years deep in RAG and LLMs. Not the tutorial kind, I've debugged why chunking kills retrieval, traced hallucinations back to bad context windows, and shipped APIs that hold up in prod. Fine-tuning is a big thing for me too: got <strong>Llama 3.1 8B to 78.5% on GSM8K</strong> using GRPO + LoRA on a consumer GPU. Shouldn't work on cheap hardware, but it does if you push hard enough.
                 </p>
                 <p>
-                  Lately I've been obsessed with <strong>agents that actually reason</strong> — not just chains of prompts, but systems that use tools, recover from failures, and make real decisions. Voice AI is another rabbit hole I keep going down. If it's about making models smarter, faster, or cheaper to run — I'm probably already in it.
+                  Lately I've been obsessed with <strong>agents that actually reason</strong>, not just chains of prompts, but systems that use tools, recover from failures, and make real decisions. Voice AI is another rabbit hole I keep going down. If it's about making models smarter, faster, or cheaper to run, I'm probably already in it.
                 </p>
 
                 <div className="flex flex-wrap gap-3 mt-6">
@@ -940,9 +934,18 @@ const HomePage = () => {
   );
 };
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
+
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/projects" element={<ProjectsPage />} />
