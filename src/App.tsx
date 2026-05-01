@@ -22,9 +22,14 @@ import {
   Settings,
   BookOpen,
   Video,
-  PenTool,
+  ArrowRight,
   MapPin,
-  Download
+  Download,
+  Bot,
+  Mic,
+  Shield,
+  Cpu,
+  Cloud
 } from 'lucide-react';
 
 // Import page components
@@ -37,7 +42,7 @@ import MediumPage from './components/MediumPage';
 import { allProjects } from './data/projects';
 import { allCertifications } from './data/certifications';
 import { allYouTubeVideos } from './data/youtube';
-import { allMediumArticles } from './data/medium';
+import { allMediumArticles, blogMetaLine } from './data/medium';
 
 const DESCRIPTION_LIMIT = 120; // characters before truncation
 
@@ -88,7 +93,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'projects', 'skills', 'certifications', 'youtube', 'medium', 'experience', 'education', 'contact'];
+      const sections = ['home', 'about', 'projects', 'experience', 'blogs', 'skills', 'youtube', 'certifications', 'education', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -194,7 +199,7 @@ const HomePage = () => {
     }
   ];
 
-  const certifications = allCertifications.slice(0, Math.min(allCertifications.length, 3));
+  const certifications = allCertifications.slice(0, Math.min(allCertifications.length, 2));
 
   const youtubeVideos = allYouTubeVideos.slice(0, Math.min(allYouTubeVideos.length, 3));
 
@@ -262,8 +267,39 @@ const HomePage = () => {
     }
   ];
 
+  const getCertificationIcon = (
+    title: string,
+    issuer: string,
+    options?: { size?: number; className?: string }
+  ) => {
+    const iconSize = options?.size ?? 16;
+    const iconClass = options?.className ?? 'text-amber-600';
+    const lowerTitle = title.toLowerCase();
+    const lowerIssuer = issuer.toLowerCase();
+
+    if (lowerTitle.includes('multimodal') || lowerTitle.includes('rag')) {
+      return <Bot size={iconSize} className={iconClass} />;
+    }
+    if (lowerTitle.includes('voice')) {
+      return <Mic size={iconSize} className={iconClass} />;
+    }
+    if (lowerTitle.includes('agent')) {
+      return <Cpu size={iconSize} className={iconClass} />;
+    }
+    if (lowerTitle.includes('machine learning')) {
+      return <Brain size={iconSize} className={iconClass} />;
+    }
+    if (lowerIssuer.includes('google cloud') || lowerIssuer.includes('amazon')) {
+      return <Cloud size={iconSize} className={iconClass} />;
+    }
+    if (lowerTitle.includes('secure') || lowerTitle.includes('security')) {
+      return <Shield size={iconSize} className={iconClass} />;
+    }
+    return <Award size={iconSize} className={iconClass} />;
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-portfolio-gradient">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -274,11 +310,11 @@ const HomePage = () => {
                 { name: 'Home', id: 'home' },
                 { name: 'About', id: 'about' },
                 { name: 'Projects', id: 'projects' },
-                { name: 'Medium', id: 'medium' },
+                { name: 'Experience', id: 'experience' },
+                { name: 'Blogs', id: 'blogs' },
                 { name: 'Skills', id: 'skills' },
                 { name: 'YouTube', id: 'youtube' },
                 { name: 'Certifications', id: 'certifications' },
-                { name: 'Experience', id: 'experience' },
                 { name: 'Education', id: 'education' },
                 { name: 'Contact', id: 'contact' }
               ].map((item) => (
@@ -312,11 +348,11 @@ const HomePage = () => {
                 { name: 'Home', id: 'home' },
                 { name: 'About', id: 'about' },
                 { name: 'Projects', id: 'projects' },
-                { name: 'Medium', id: 'medium' },
+                { name: 'Experience', id: 'experience' },
+                { name: 'Blogs', id: 'blogs' },
                 { name: 'Skills', id: 'skills' },
                 { name: 'YouTube', id: 'youtube' },
                 { name: 'Certifications', id: 'certifications' },
-                { name: 'Experience', id: 'experience' },
                 { name: 'Education', id: 'education' },
                 { name: 'Contact', id: 'contact' }
               ].map((item) => (
@@ -395,7 +431,7 @@ const HomePage = () => {
       </section>
 
       {/* About Me Section */}
-      <section id="about" className="py-20 bg-white">
+      <section id="about" className="py-20 bg-white/35 border-y border-white/40">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left side - About text */}
@@ -404,21 +440,19 @@ const HomePage = () => {
                 <User size={48} className="text-blue-600 mr-4" />
                 <h2 className="text-4xl font-bold text-gray-900">About Me</h2>
               </div>
-              <div className="space-y-6 text-lg text-gray-600 leading-relaxed text-justify">
+              <div className="space-y-5 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  I always start by understanding what the user actually needs, study the problem deeply, and then build solutions that solve it <strong>end-to-end</strong>. I work on AI systems like <strong>RAG pipelines</strong> and <strong>LLM fine-tuning</strong>, with a focus on building <strong>agents</strong> that can reason and take actions.
+                  I'm doing my MS in Machine Learning at UMD — but honestly, most of my time goes into <strong>building things</strong>, not just studying them.
                 </p>
                 <p>
-                  I am also exploring <strong>post-training</strong> and <strong>scalable inference</strong>, while building <strong>voice AI</strong> systems and fine-tuning open-source models to compete with larger systems.
+                  I've spent the last couple of years deep in RAG and LLMs. Not the tutorial kind — I've debugged why chunking kills retrieval, traced hallucinations back to bad context windows, and shipped APIs that hold up in prod. Fine-tuning is a big thing for me too: got <strong>Llama 3.1 8B to 78.5% on GSM8K</strong> using GRPO + LoRA on a consumer GPU. Shouldn't work on cheap hardware, but it does if you push hard enough.
                 </p>
-                <p className="text-base text-gray-500">
-                  <strong>Currently:</strong> MS in Applied Machine Learning at University of Maryland, College Park
-                  <br />
-                  <strong>Previously:</strong> ML Engineer Intern at Plutomen Technologies and Research Assistant at CHARUSAT
+                <p>
+                  Lately I've been obsessed with <strong>agents that actually reason</strong> — not just chains of prompts, but systems that use tools, recover from failures, and make real decisions. Voice AI is another rabbit hole I keep going down. If it's about making models smarter, faster, or cheaper to run — I'm probably already in it.
                 </p>
 
-                <div className="flex flex-wrap gap-3 mt-8">
-                  {['RAG Pipelines', 'LLM Fine-Tuning', 'AI Agents', 'Post-Training', 'Scalable Inference', 'Voice AI'].map((tag) => (
+                <div className="flex flex-wrap gap-3 mt-6">
+                  {['RAG & Retrieval', 'LLM Fine-Tuning', 'AI Agents', 'GRPO / LoRA', 'Voice AI', 'Inference Optimization'].map((tag) => (
                     <span key={tag} className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
                       {tag}
                     </span>
@@ -445,7 +479,7 @@ const HomePage = () => {
       </section>
 
       {/* Featured Projects Section */}
-      <section id="projects" className="py-20 bg-gray-50">
+      <section id="projects" className="py-20 bg-white/70 border-y border-white/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <Code size={48} className="text-blue-600 mx-auto mb-4" />
@@ -520,45 +554,88 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Medium Articles Section */}
-      <section id="medium" className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Work Experience Section */}
+      <section id="experience" className="py-20 bg-white/35 border-y border-white/40">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <PenTool size={48} className="text-green-600 mx-auto mb-4" />
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Medium Articles</h2>
-            <p className="text-xl text-gray-600">Technical insights and tutorials</p>
+            <Briefcase size={48} className="text-blue-600 mx-auto mb-4" />
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Work Experience</h2>
+            <p className="text-xl text-gray-600">Professional journey and achievements</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {mediumArticles.map((article, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-gray-500 text-sm">{article.date}</span>
-                  <span className="text-gray-500 text-sm">{article.readTime}</span>
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-blue-200"></div>
+
+            <div className="space-y-12">
+              {workExperience.map((job, index) => (
+                <div key={index} className="relative flex items-start">
+                  {/* Timeline dot */}
+                  <div className="absolute left-6 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
+
+                  {/* Content */}
+                  <div className="ml-16 bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow w-full">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900">{job.title}</h3>
+                        <p className="text-lg text-blue-600 font-medium">{job.company}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-gray-600 font-medium">{job.period}</p>
+                        <p className="text-gray-500 text-sm flex items-center">
+                          <MapPin size={14} className="mr-1" />
+                          {job.location}
+                        </p>
+                      </div>
+                    </div>
+
+                    <ul className="space-y-2">
+                      {job.achievements.map((achievement, achIndex) => (
+                        <li key={achIndex} className="flex items-start">
+                          <span className="text-blue-600 mr-2">•</span>
+                          <span className="text-gray-700" dangerouslySetInnerHTML={{ __html: achievement }} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <h3 className="font-bold text-gray-900 mb-3 text-lg">{article.title}</h3>
-                <p className="text-gray-600 mb-4">{article.excerpt}</p>
-                <div className="flex items-center justify-end">
-                  <a href={article.url} className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                    Read More →
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-12">
-            <Link 
-              to="/medium"
-              className="inline-flex items-center bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors"
-            >
-              View More Articles
-              <ExternalLink size={20} className="ml-2" />
-            </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
+      {/* Latest Blog Posts */}
+      <section id="blogs" className="py-7">
+        <div className="max-w-[1100px] mx-auto px-6">
+          <h2 className="portfolio-blog-section-title">Latest Blog Posts</h2>
+          <div className="portfolio-blog-section">
+            <div className="portfolio-blog-list">
+              {mediumArticles.map((article, index) => (
+                <article key={index} className="portfolio-blog-item">
+                  <h4>
+                    {article.url !== '#' ? (
+                      <a href={article.url} target="_blank" rel="noopener noreferrer">
+                        {article.title}
+                      </a>
+                    ) : (
+                      article.title
+                    )}
+                  </h4>
+                  <div className="portfolio-blog-meta">{blogMetaLine(article)}</div>
+                  <p className="portfolio-blog-excerpt">{article.excerpt}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+          <Link to="/medium" className="portfolio-blog-view-all">
+            Read All Posts
+            <ArrowRight strokeWidth={2.5} aria-hidden />
+          </Link>
+        </div>
+      </section>
+
       {/* Skills & Expertise Section */}
-      <section id="skills" className="py-20 bg-gray-50">
+      <section id="skills" className="py-20 bg-white/70 border-y border-white/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <Award size={48} className="text-blue-600 mx-auto mb-4" />
@@ -595,7 +672,7 @@ const HomePage = () => {
       </section>
 
       {/* YouTube Content Section */}
-      <section id="youtube" className="py-20 bg-white">
+      <section id="youtube" className="py-20 bg-white/35 border-y border-white/40">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <Youtube size={48} className="text-red-600 mx-auto mb-4" />
@@ -652,38 +729,42 @@ const HomePage = () => {
       </section>
 
       {/* Certifications Section */}
-      <section id="certifications" className="py-20 bg-gray-50">
+      <section id="certifications" className="py-20 bg-white/70 border-y border-white/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <Award size={48} className="text-blue-600 mx-auto mb-4" />
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Certifications</h2>
             <p className="text-xl text-gray-600">Professional credentials and achievements</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {certifications.map((cert, index) => (
               <a
                 key={index}
                 href={cert.verifyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 text-center group cursor-pointer transform hover:-translate-y-1 border border-gray-100"
+                className="group block aspect-square w-full max-w-sm mx-auto overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-black/5 transition-all duration-300 hover:shadow-xl hover:ring-black/10"
               >
-                <div className="mb-4">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">
-                    {cert.title}
-                  </h3>
-                  <h4 className="font-semibold text-blue-600 mb-3 text-sm group-hover:text-blue-800 transition-colors">
-                    {cert.issuer}
-                  </h4>
-                  <p className="text-gray-600 text-sm mb-4">{cert.date}</p>
-                  {cert.description && (
-                    <p className="text-gray-600 text-sm mb-4 leading-relaxed text-left">
-                      {cert.description}
+                <div className="flex h-full min-h-0 flex-col">
+                  <div className="relative flex min-h-0 flex-[1.35] flex-col items-center justify-center bg-gradient-to-br from-gray-950 via-gray-900 to-indigo-950 px-4 pt-6 pb-8">
+                    <div className="mb-3 flex size-14 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15 backdrop-blur-sm">
+                      {getCertificationIcon(cert.title, cert.issuer, {
+                        size: 36,
+                        className: 'text-amber-400'
+                      })}
+                    </div>
+                    <p className="line-clamp-2 text-center text-xs font-medium leading-relaxed text-white/75">
+                      {cert.description ?? cert.issuer}
                     </p>
-                  )}
-                  <div className="flex items-center justify-center text-blue-600 transition-opacity">
-                    <span className="text-xs mr-1">Verify Certificate</span>
-                    <ExternalLink size={12} />
+                    <span className="absolute bottom-3 right-3 rounded bg-black/80 px-2 py-1 text-[11px] font-medium tracking-wide text-white">
+                      {cert.date}
+                    </span>
+                  </div>
+                  <div className="flex min-h-[36%] flex-1 flex-col justify-center bg-white px-5 py-4">
+                    <h3 className="line-clamp-4 text-base font-bold leading-snug tracking-tight text-gray-900 group-hover:text-blue-700 md:text-[17px]">
+                      {cert.title}
+                    </h3>
+                    <p className="mt-2 line-clamp-1 text-xs font-medium text-gray-500">{cert.issuer}</p>
                   </div>
                 </div>
               </a>
@@ -701,58 +782,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Work Experience Section */}
-      <section id="experience" className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <Briefcase size={48} className="text-blue-600 mx-auto mb-4" />
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Work Experience</h2>
-            <p className="text-xl text-gray-600">Professional journey and achievements</p>
-          </div>
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-blue-200"></div>
-            
-            <div className="space-y-12">
-              {workExperience.map((job, index) => (
-                <div key={index} className="relative flex items-start">
-                  {/* Timeline dot */}
-                  <div className="absolute left-6 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg"></div>
-                  
-                  {/* Content */}
-                  <div className="ml-16 bg-gray-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow w-full">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                      <div>
-                        <h3 className="text-xl font-bold text-gray-900">{job.title}</h3>
-                        <p className="text-lg text-blue-600 font-medium">{job.company}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-gray-600 font-medium">{job.period}</p>
-                        <p className="text-gray-500 text-sm flex items-center">
-                          <MapPin size={14} className="mr-1" />
-                          {job.location}
-                        </p>
-                      </div>
-                    </div>
-
-                    <ul className="space-y-2">
-                      {job.achievements.map((achievement, achIndex) => (
-                        <li key={achIndex} className="flex items-start">
-                          <span className="text-blue-600 mr-2">•</span>
-                          <span className="text-gray-700" dangerouslySetInnerHTML={{ __html: achievement }} />
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Education Section */}
-      <section id="education" className="py-20 bg-gray-50">
+      <section id="education" className="py-20 bg-white/70 border-y border-white/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <GraduationCap size={48} className="text-blue-600 mx-auto mb-4" />

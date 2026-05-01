@@ -1,22 +1,19 @@
 import React from 'react';
-import { Youtube, ArrowLeft, Play, ExternalLink } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Youtube, Play, ExternalLink } from 'lucide-react';
 import { allYouTubeVideos } from '../data/youtube';
+import SecondarySiteNav from './SecondarySiteNav';
 
 const YouTubePage = () => {
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
+    <>
+      <div className="min-h-screen bg-portfolio-gradient pt-4">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SecondarySiteNav backTo="/#youtube" />
+      </div>
       {/* Header */}
       <div className="bg-white shadow-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Link 
-            to="/#youtube" 
-            className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4 transition-colors"
-          >
-            <ArrowLeft size={20} className="mr-2" />
-            Back to Home
-          </Link>
           <div className="flex items-center mb-4">
             <Youtube size={48} className="text-red-600 mr-4" />
             <div>
@@ -86,6 +83,7 @@ const YouTubePage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

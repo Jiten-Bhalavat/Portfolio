@@ -1,136 +1,92 @@
-import React, { useState, useMemo } from 'react';
-import { Award, ArrowLeft, ExternalLink, Filter } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Bot, Mic, Brain, Cloud, Shield, Cpu, Calendar, GraduationCap, Award } from 'lucide-react';
 import { allCertifications } from '../data/certifications';
+import SecondarySiteNav from './SecondarySiteNav';
 
 const CertificationsPage = () => {
-  const [selectedFilter, setSelectedFilter] = useState<string>('all');
+  const getCertificationIcon = (title: string, issuer: string) => {
+    const lowerTitle = title.toLowerCase();
+    const lowerIssuer = issuer.toLowerCase();
 
-  // Get unique issuers for filter options
-  const uniqueIssuers = useMemo(() => {
-    const issuers = [...new Set(allCertifications.map(cert => cert.issuer))];
-    return issuers.sort();
-  }, []);
-
-  // Filter certifications based on selected filter
-  const filteredCertifications = useMemo(() => {
-    if (selectedFilter === 'all') {
-      return allCertifications;
+    if (lowerTitle.includes('multimodal') || lowerTitle.includes('rag')) {
+      return <Bot size={17} className="text-amber-600" />;
     }
-    return allCertifications.filter(cert => cert.issuer === selectedFilter);
-  }, [selectedFilter]);
+    if (lowerTitle.includes('voice')) {
+      return <Mic size={17} className="text-amber-600" />;
+    }
+    if (lowerTitle.includes('agent')) {
+      return <Cpu size={17} className="text-amber-600" />;
+    }
+    if (lowerTitle.includes('machine learning')) {
+      return <Brain size={17} className="text-amber-600" />;
+    }
+    if (lowerIssuer.includes('google cloud') || lowerIssuer.includes('amazon')) {
+      return <Cloud size={17} className="text-amber-600" />;
+    }
+    if (lowerTitle.includes('secure') || lowerTitle.includes('security')) {
+      return <Shield size={17} className="text-amber-600" />;
+    }
+    return <Award size={17} className="text-amber-600" />;
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Link 
-            to="/#certifications" 
-            className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4 transition-colors"
-          >
-            <ArrowLeft size={20} className="mr-2" />
-            Back to Home
-          </Link>
-          <div className="flex items-center mb-6">
-            <Award size={48} className="text-blue-600 mr-4" />
-            <div>
-              <h1 className="text-4xl font-bold text-gray-900">All Certifications</h1>
-              <p className="text-xl text-gray-600 mt-2">Professional credentials and achievements</p>
-            </div>
-          </div>
+    <>
+      <div className="min-h-screen bg-portfolio-gradient pt-4">
+      <div className="max-w-[860px] mx-auto px-4 py-8">
+        <SecondarySiteNav backTo="/#certifications" />
+        <h1 className="text-4xl md:text-[44px] font-bold text-gray-900 leading-tight">
+          Certifications & Achievements
+        </h1>
+        <div className="h-[3px] w-[360px] bg-amber-600 mt-2 mb-6 max-w-full" />
 
-          {/* Filter Section */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-center space-x-2">
-              <Filter size={20} className="text-gray-600" />
-              <span className="text-sm font-medium text-gray-700">Filter by Platform:</span>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              <button
-                onClick={() => setSelectedFilter('all')}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  selectedFilter === 'all'
-                    ? 'bg-blue-600 text-white shadow-md'
-                    : 'bg-white text-gray-700 border border-gray-300 hover:border-blue-300 hover:text-blue-600'
-                }`}
-              >
-                All ({allCertifications.length})
-              </button>
-              {uniqueIssuers.map((issuer) => {
-                const count = allCertifications.filter(cert => cert.issuer === issuer).length;
-                return (
-                  <button
-                    key={issuer}
-                    onClick={() => setSelectedFilter(issuer)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                      selectedFilter === issuer
-                        ? 'bg-blue-600 text-white shadow-md'
-                        : 'bg-white text-gray-700 border border-gray-300 hover:border-blue-300 hover:text-blue-600'
-                    }`}
-                  >
-                    {issuer} ({count})
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Certifications Grid */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Results Count */}
-        <div className="mb-6">
-          <p className="text-gray-600">
-            {selectedFilter === 'all' 
-              ? `Showing all ${filteredCertifications.length} certifications`
-              : `Showing ${filteredCertifications.length} certification${filteredCertifications.length === 1 ? '' : 's'} from ${selectedFilter}`
-            }
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredCertifications.map((cert, index) => (
+        <div className="space-y-4">
+          {allCertifications.map((cert, index) => (
             <a
               key={index}
               href={cert.verifyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 text-center group cursor-pointer transform hover:-translate-y-1 border border-gray-100"
+              className="block bg-white/95 rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300 group border border-gray-200/80 hover:border-amber-200"
             >
-              <div className="mb-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">
-                  {cert.title}
-                </h3>
-                <h4 className="font-semibold text-blue-600 mb-3 text-sm group-hover:text-blue-800 transition-colors">
-                  {cert.issuer}
-                </h4>
-                <p className="text-gray-600 text-sm mb-4">{cert.date}</p>
-                {cert.description && (
-                  <p className="text-gray-600 text-sm mb-4 leading-relaxed text-left">
-                    {cert.description}
-                  </p>
-                )}
-                <div className="flex items-center justify-center text-blue-600 transition-opacity">
-                  <span className="text-xs mr-1">Verify Certificate</span>
-                  <ExternalLink size={12} />
+              <div className="flex items-start gap-2.5">
+                <div className="w-8 h-8 rounded-md bg-amber-50 flex items-center justify-center flex-shrink-0 border border-amber-100 mt-0.5">
+                  {getCertificationIcon(cert.title, cert.issuer)}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg md:text-[19px] font-bold text-gray-900 leading-snug mb-2">
+                    {cert.title}
+                  </h3>
+                  {cert.description && (
+                    <p className="text-[15px] md:text-[15px] text-gray-700 leading-relaxed mb-4">
+                      {cert.description}
+                    </p>
+                  )}
+                  <div className="border-t border-gray-200 pt-3 flex items-center justify-between gap-3">
+                    <span className="text-gray-500 text-sm inline-flex items-center">
+                      <Calendar size={13} className="mr-1.5" />
+                      {cert.date}
+                    </span>
+                    <span className="text-gray-500 text-sm inline-flex items-center text-right">
+                      <GraduationCap size={13} className="mr-1.5" />
+                      {cert.issuer}
+                    </span>
+                  </div>
                 </div>
               </div>
             </a>
           ))}
         </div>
 
-        {/* No Results Message */}
-        {filteredCertifications.length === 0 && (
+        {/* Empty state */}
+        {allCertifications.length === 0 && (
           <div className="text-center py-12">
             <Award size={48} className="text-gray-300 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-600 mb-2">No certifications found</h3>
-            <p className="text-gray-500">Try selecting a different filter option.</p>
           </div>
         )}
       </div>
     </div>
+    </>
   );
 };
 
