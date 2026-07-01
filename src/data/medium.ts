@@ -1,5 +1,13 @@
 export const allMediumArticles = [
   {
+    title: "LoRA & QLoRA Mastery: The Beginner-to-Advanced Guide to Efficient LLM Fine-Tuning",
+    excerpt: "Understand the intuition behind LoRA and QLoRA, learn the math without getting lost in equations, and fine-tune LLMs efficiently using Hugging Face, PEFT, and real-world code examples. Hello, If...",
+    readTime: "15 min read",
+    date: "Jun 30, 2026",
+    url: "https://pub.towardsai.net/lora-qlora-mastery-the-beginner-to-advanced-guide-to-efficient-llm-fine-tuning-d554b0db1066",
+    tags: ["peft", "qlora", "large-language-models", "lora", "fine-tuning"]
+  },
+  {
     title: "How Cloudflare’s MCP Server Solved in 10 Minutes What I Couldn’t Debug in 2 Hours",
     excerpt: "A real story about the moment MCP servers stopped being a demo and started being useful The Problem I have my portfolio deployed on Cloudflare Workers — multiple versions built up over time as I...",
     readTime: "3 min read",
@@ -70,13 +78,5 @@ export const allMediumArticles = [
     date: "Nov 4, 2024",
     url: "https://infinityai.medium.com/how-to-run-llama3-phi3-on-your-local-pc-using-ollama-b84213b2960a",
     tags: ["llama-3", "llm", "google-colab", "local-pc", "ollama"]
-  },
-  {
-    title: "Ollama ConnectError: [Errno 99] Cannot assign requested address",
-    excerpt: "Ever Faced this Error while Using Ollama ?? ConnectError: [Errno 99] Cannot assign requested address Fed up with this Error ? And Don’t Know what to do ? Then you are at the Right Place. I got you...",
-    readTime: "8 min read",
-    date: "Oct 29, 2024",
-    url: "https://infinityai.medium.com/ollama-connecterror-errno-99-cannot-assign-requested-address-f0facad8027a",
-    tags: ["large-language-models", "ollama", "error", "llm", "ollama-connecterror"]
   }
 ];
