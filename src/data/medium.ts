@@ -1,5 +1,13 @@
 export const allMediumArticles = [
   {
+    title: "[LATEST] How I Passed the Claude Certified Architect Exam on My First Attempt + Complete Resources…",
+    excerpt: "[LATEST] How I Passed the Claude Certified Architect Exam on My First Attempt + Complete Resources & Step-by-Step Guide If you’re planning to take the Claude Certified Architect (CCA) exam in 2026,...",
+    readTime: "19 min read",
+    date: "Jul 5, 2026",
+    url: "https://ai.gopubby.com/latest-how-i-passed-the-claude-certified-architect-exam-on-my-first-attempt-complete-resources-8afd320512d3",
+    tags: ["claudecertifiedarchitect", "ai-certification", "anthropic-claude", "ccaf", "claude-architect"]
+  },
+  {
     title: "LoRA & QLoRA Mastery: The Beginner-to-Advanced Guide to Efficient LLM Fine-Tuning",
     excerpt: "Understand the intuition behind LoRA and QLoRA, learn the math without getting lost in equations, and fine-tune LLMs efficiently using Hugging Face, PEFT, and real-world code examples. Hello, If...",
     readTime: "15 min read",
@@ -70,13 +78,5 @@ export const allMediumArticles = [
     date: "Jan 17, 2025",
     url: "https://infinityai.medium.com/how-to-create-your-personal-ai-agent-part-1-1a6423966911",
     tags: ["how-to-create-ai-agent", "phidata", "agents", "llm", "ai-agent"]
-  },
-  {
-    title: "How To Run llama3, phi3 on your Local PC Using Ollama",
-    excerpt: "If you want to use Large Language Models on your Local Environment then, Ollama is For You, My Friend !! Read till the end, there’s a surprise for you !!!! 🤩🥳🥳 If you are Facing the Connection...",
-    readTime: "8 min read",
-    date: "Nov 4, 2024",
-    url: "https://infinityai.medium.com/how-to-run-llama3-phi3-on-your-local-pc-using-ollama-b84213b2960a",
-    tags: ["llama-3", "llm", "google-colab", "local-pc", "ollama"]
   }
 ];
