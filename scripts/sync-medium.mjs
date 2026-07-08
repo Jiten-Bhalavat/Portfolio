@@ -121,6 +121,37 @@ function loadExistingUrls() {
   }
 }
 
+const FILE_HEADER = `export type MediumArticle = {
+  title: string;
+  excerpt: string;
+  readTime: string;
+  date: string;
+  url: string;
+  tags: string[];
+  topics?: string[];
+  displayTags?: string[];
+  /** Optional line under title, e.g. "Towards AI · LLMs & Quantization" */
+  blogMeta?: string;
+};
+
+export function blogMetaLine(article: MediumArticle): string {
+  if (article.blogMeta) return article.blogMeta;
+  const plat = article.url.includes('towardsai')
+    ? 'Towards AI'
+    : article.url.includes('medium.com')
+      ? 'Medium'
+      : 'Blog';
+  const prettyTags = article.tags
+    .slice(0, 2)
+    .map((t) =>
+      t.split('-').map((w) => (w ? w.charAt(0).toUpperCase() + w.slice(1) : '')).join(' ')
+    )
+    .join(' & ');
+  return \`\${plat} · \${prettyTags}\`;
+}
+
+`;
+
 function buildMediumTs(articles) {
   const lines = articles.map((a) => {
     const tagsStr = a.tags.map((t) => `"${escapeForTs(t)}"`).join(', ');
@@ -133,7 +164,7 @@ function buildMediumTs(articles) {
     tags: [${tagsStr}]
   }`;
   });
-  return `export const allMediumArticles = [
+  return `${FILE_HEADER}export const allMediumArticles: MediumArticle[] = [
 ${lines.join(',\n')}
 ];
 `;

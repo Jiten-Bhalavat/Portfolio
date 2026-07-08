@@ -1,4 +1,33 @@
-export const allMediumArticles = [
+export type MediumArticle = {
+  title: string;
+  excerpt: string;
+  readTime: string;
+  date: string;
+  url: string;
+  tags: string[];
+  topics?: string[];
+  displayTags?: string[];
+  /** Optional line under title, e.g. "Towards AI · LLMs & Quantization" */
+  blogMeta?: string;
+};
+
+export function blogMetaLine(article: MediumArticle): string {
+  if (article.blogMeta) return article.blogMeta;
+  const plat = article.url.includes('towardsai')
+    ? 'Towards AI'
+    : article.url.includes('medium.com')
+      ? 'Medium'
+      : 'Blog';
+  const prettyTags = article.tags
+    .slice(0, 2)
+    .map((t) =>
+      t.split('-').map((w) => (w ? w.charAt(0).toUpperCase() + w.slice(1) : '')).join(' ')
+    )
+    .join(' & ');
+  return `${plat} · ${prettyTags}`;
+}
+
+export const allMediumArticles: MediumArticle[] = [
   {
     title: "[LATEST] How I Passed the Claude Certified Architect Exam on My First Attempt + Complete Resources…",
     excerpt: "[LATEST] How I Passed the Claude Certified Architect Exam on My First Attempt + Complete Resources & Step-by-Step Guide If you’re planning to take the Claude Certified Architect (CCA) exam in 2026,...",
