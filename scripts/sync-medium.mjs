@@ -111,13 +111,32 @@ function parseRssXml(xml) {
   return items;
 }
 
-function loadExistingUrls() {
+// Parses existing article objects out of the generated medium.ts so old
+// posts that have scrolled out of Medium's RSS window (which only returns
+// the ~10 most recent items) aren't silently dropped on every sync.
+function loadExistingArticles() {
   try {
     const content = readFileSync(MEDIUM_DATA_PATH, 'utf-8');
-    const urlMatches = content.matchAll(/url:\s*["']([^"']+)["']/g);
-    return new Set([...urlMatches].map((m) => m[1]));
+    const arrayMatch = content.match(/allMediumArticles[^=]*=\s*\[([\s\S]*)\];\s*$/);
+    if (!arrayMatch) return [];
+    const objRegex = /\{\s*title:\s*"((?:[^"\\]|\\.)*)",\s*excerpt:\s*"((?:[^"\\]|\\.)*)",\s*readTime:\s*"((?:[^"\\]|\\.)*)",\s*date:\s*"((?:[^"\\]|\\.)*)",\s*url:\s*"((?:[^"\\]|\\.)*)",\s*tags:\s*\[([^\]]*)\]\s*\}/g;
+    const unescape = (s) => s.replace(/\\"/g, '"').replace(/\\n/g, '\n').replace(/\\\\/g, '\\');
+    const articles = [];
+    let m;
+    while ((m = objRegex.exec(arrayMatch[1])) !== null) {
+      const tags = [...m[6].matchAll(/"((?:[^"\\]|\\.)*)"/g)].map((t) => unescape(t[1]));
+      articles.push({
+        title: unescape(m[1]),
+        excerpt: unescape(m[2]),
+        readTime: unescape(m[3]),
+        date: unescape(m[4]),
+        url: unescape(m[5]),
+        tags,
+      });
+    }
+    return articles;
   } catch {
-    return new Set();
+    return [];
   }
 }
 
@@ -176,7 +195,8 @@ async function main() {
   const rssArticles = parseRssXml(xml);
   console.log(`Found ${rssArticles.length} articles in RSS feed`);
 
-  const existingUrls = loadExistingUrls();
+  const existingArticles = loadExistingArticles();
+  const existingUrls = new Set(existingArticles.map((a) => a.url));
   const newCount = rssArticles.filter((a) => !existingUrls.has(a.url)).length;
   const forceUpdate = process.argv.includes('--force');
 
@@ -185,8 +205,15 @@ async function main() {
     return;
   }
 
-  // Replace file with RSS data (RSS is already newest-first)
-  const allArticles = rssArticles;
+  // Merge: RSS items refresh their existing entries (title/excerpt edits on
+  // Medium propagate), existing articles that fell outside the RSS window
+  // are kept, so history is never silently dropped. Sorted newest-first.
+  const merged = new Map(existingArticles.map((a) => [a.url, a]));
+  for (const a of rssArticles) merged.set(a.url, a);
+  const allArticles = [...merged.values()].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
   const content = buildMediumTs(allArticles);
   writeFileSync(MEDIUM_DATA_PATH, content, 'utf-8');
   console.log(`Updated ${MEDIUM_DATA_PATH} with ${allArticles.length} articles (${newCount} new)`);
