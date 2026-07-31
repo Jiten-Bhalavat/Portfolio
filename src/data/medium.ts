@@ -93,10 +93,18 @@ export const allMediumArticles: MediumArticle[] = [
     tags: ["generative-ai", "parsing-techniques", "agentic-ai", "retrieval-augmented-gen", "artificial-intelligence"]
   },
   {
+    title: "Fix RAG Hallucinations at the Source: Top PDF Parsers Ranked 2025",
+    excerpt: "This is your Data, yes, Garbage. If you’re still relying on PyPDF / PyMuPDF / pdfplumber for parsing, your RAG pipeline is already broken at the data layer . No matter how advanced your workflow is...",
+    readTime: "5 min read",
+    date: "Sep 5, 2025",
+    url: "https://medium.com/data-science-collective/3-proven-techniques-to-accurately-parse-your-pdfs-2c01c5badb84",
+    tags: ["parsing-techniques", "agentic-ai", "retrieval-augmented-gen", "ai", "artificial-intelligence"]
+  },
+  {
     title: "How to Create Your Personal AI Agent [ Part-2 ]",
     excerpt: "Read till the end to watch the Video of your Personal Agent 😎 If you haven’t read Part 1, I strongly recommend you read that first and then come here: Part-1 Now, let’s understand what we will need...",
     readTime: "4 min read",
-    date: "Jan 16, 2025",
+    date: "Jan 17, 2025",
     url: "https://infinityai.medium.com/how-to-create-your-personal-ai-agent-part-2-a28729b6f8c7",
     tags: ["how-to", "ai-agent", "llm", "ai", "create"]
   },
@@ -104,7 +112,7 @@ export const allMediumArticles: MediumArticle[] = [
     title: "How to Create Your First Personal AI Agent For Beginners [ Part-1 ]",
     excerpt: "Ever wondered if there should be a personal agent that has all your information? No worries, you can build one right here! 😉 First Lets Understand, what is AI agent ? An AI agent is a software...",
     readTime: "3 min read",
-    date: "Jan 16, 2025",
+    date: "Jan 17, 2025",
     url: "https://infinityai.medium.com/how-to-create-your-personal-ai-agent-part-1-1a6423966911",
     tags: ["how-to-create-ai-agent", "phidata", "agents", "llm", "ai-agent"]
   },
