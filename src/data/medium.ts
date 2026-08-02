@@ -29,6 +29,14 @@ export function blogMetaLine(article: MediumArticle): string {
 
 export const allMediumArticles: MediumArticle[] = [
   {
+    title: "The Summarization TRAP: Why You Should Never Summarize Everything",
+    excerpt: "The Case Facts Block Pattern Every AI Engineer Must Know Imagine you’re building a customer support chatbot for an e-commerce company. A customer starts a conversation and says: Customer ID:...",
+    readTime: "16 min read",
+    date: "Aug 2, 2026",
+    url: "https://pub.towardsai.net/the-summarization-trap-why-you-should-never-summarize-everything-9a63438c87af",
+    tags: ["claude-code", "machine-learning", "artificial-intelligence", "large-language-models", "text-summarization"]
+  },
+  {
     title: "[LATEST] How I Passed the Claude Certified Architect Exam on My First Attempt + Complete Resources…",
     excerpt: "[LATEST] How I Passed the Claude Certified Architect Exam on My First Attempt + Complete Resources & Step-by-Step Guide If you’re planning to take the Claude Certified Architect (CCA) exam in 2026,...",
     readTime: "19 min read",
