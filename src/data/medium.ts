@@ -29,6 +29,14 @@ export function blogMetaLine(article: MediumArticle): string {
 
 export const allMediumArticles: MediumArticle[] = [
   {
+    title: "Claude.MD vs SKILLS.MD vs AGENTS.MD, What to use When?",
+    excerpt: "A beginner-friendly guide to organizing instructions for Claude Code and other AI coding tools. If you have started using Claude Code, you have probably created a CLAUDE.md file and dumped a lot of...",
+    readTime: "10 min read",
+    date: "Aug 10, 2026",
+    url: "https://pub.towardsai.net/claude-md-vs-skills-md-vs-agents-md-what-to-use-when-98589ad57379",
+    tags: ["openai", "agentsmd", "claude-md", "skillsmd", "claude-code"]
+  },
+  {
     title: "The Summarization TRAP: Why You Should Never Summarize Everything",
     excerpt: "The Case Facts Block Pattern Every AI Engineer Must Know Imagine you’re building a customer support chatbot for an e-commerce company. A customer starts a conversation and says: Customer ID:...",
     readTime: "16 min read",
@@ -98,7 +106,7 @@ export const allMediumArticles: MediumArticle[] = [
     readTime: "5 min read",
     date: "Sep 5, 2025",
     url: "https://infinityai.medium.com/3-proven-techniques-to-accurately-parse-your-pdfs-2c01c5badb84",
-    tags: ["generative-ai", "parsing-techniques", "agentic-ai", "retrieval-augmented-gen", "artificial-intelligence"]
+    tags: ["parsing-techniques", "agentic-ai", "retrieval-augmented-gen", "ai", "artificial-intelligence"]
   },
   {
     title: "Fix RAG Hallucinations at the Source: Top PDF Parsers Ranked 2025",
