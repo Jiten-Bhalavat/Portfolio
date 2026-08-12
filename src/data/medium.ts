@@ -69,6 +69,14 @@ export const allMediumArticles: MediumArticle[] = [
     tags: ["cloudflare-mcp-server", "anthropic-claude", "cloudflare", "claude-code", "mcp-server"]
   },
   {
+    title: "How Cloudflare’s MCP Server Solved in 10 Minutes What I Couldn’t Debug in 2 Hours",
+    excerpt: "A real story about the moment MCP servers stopped being a demo and started being useful The Problem I have my portfolio deployed on Cloudflare Workers — multiple versions built up over time as I...",
+    readTime: "4 min read",
+    date: "May 5, 2026",
+    url: "https://medium.com/data-science-collective/how-cloudflares-mcp-server-solved-in-10-minutes-what-i-couldn-t-debug-in-2-hours-63c1037b9f2a",
+    tags: ["anthropic-claude", "cloudflare", "ai", "claude-code", "mcp-server"]
+  },
+  {
     title: "Understanding LLM Quantization: Why FP32, FP16, BF16 and INT8 Matter for Modern AI Systems",
     excerpt: "Large Language Models are extremely large and computationally expensive, so techniques like reduced-precision data types (FP16, BF16) and quantization (INT8, INT4) are used to significantly lower...",
     readTime: "12 min read",
@@ -85,11 +93,27 @@ export const allMediumArticles: MediumArticle[] = [
     tags: ["mcp-server", "excalidraw", "software-development", "claude-ai", "claude-code"]
   },
   {
+    title: "Excalidraw MCP: Turning Agent Markdown into Instant Diagrams",
+    excerpt: "Ugly ASCII Workflow diagram One of the most underrated bottlenecks in technical learning and system design is visualization. We understand concepts faster when we see them, yet creating diagrams...",
+    readTime: "2 min read",
+    date: "Feb 18, 2026",
+    url: "https://ai.gopubby.com/excalidraw-mcp-turning-agent-markdown-into-instant-diagrams-64ab8471fd67",
+    tags: ["mcp-server", "excalidraw", "software-development", "claude-ai", "claude-code"]
+  },
+  {
     title: "Claude Code Just Ended Manual Coding for me — My Step-by-Step Guide to 3x Faster Builds in 2026",
     excerpt: "Claude Code Just Ended Manual Coding for me — My Step-by-Step Guide to 3x Faster Builds in 2026 I lost hours switching branches and fixing merge conflicts every week. Features stalled. Context...",
     readTime: "1 min read",
     date: "Feb 9, 2026",
     url: "https://infinityai.medium.com/claude-code-just-ended-manual-coding-for-me-my-step-by-step-guide-to-3x-faster-builds-in-2026-f7f2abe8f611",
+    tags: ["productivity-hacks", "anthropic-claude", "claude-code", "clawdbot", "openclaw"]
+  },
+  {
+    title: "Claude Code Just Ended Manual Coding for me — My Step-by-Step Guide to 3x Faster Builds in 2026",
+    excerpt: "Claude Code Just Ended Manual Coding for me — My Step-by-Step Guide to 3x Faster Builds in 2026 I lost hours switching branches and fixing merge conflicts every week. Features stalled. Context...",
+    readTime: "1 min read",
+    date: "Feb 9, 2026",
+    url: "https://ai.gopubby.com/claude-code-just-ended-manual-coding-for-me-my-step-by-step-guide-to-3x-faster-builds-in-2026-f7f2abe8f611",
     tags: ["productivity-hacks", "anthropic-claude", "claude-code", "clawdbot", "openclaw"]
   },
   {
