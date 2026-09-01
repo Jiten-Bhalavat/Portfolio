@@ -53,6 +53,14 @@ export const allMediumArticles: MediumArticle[] = [
     tags: ["claudecertifiedarchitect", "ai-certification", "anthropic-claude", "ccaf", "claude-architect"]
   },
   {
+    title: "[LATEST] How I Passed the Claude Certified Architect Exam on My First Attempt + Complete Resources…",
+    excerpt: "[LATEST] How I Passed the Claude Certified Architect Exam on My First Attempt + Complete Resources & Step-by-Step Guide If you’re planning to take the Claude Certified Architect (CCA) exam in 2026,...",
+    readTime: "19 min read",
+    date: "Jul 5, 2026",
+    url: "https://aiadvances.org/latest-how-i-passed-the-claude-certified-architect-exam-on-my-first-attempt-complete-resources-8afd320512d3",
+    tags: ["claudecertifiedarchitect", "ai-certification", "anthropic-claude", "ccaf", "claude-architect"]
+  },
+  {
     title: "LoRA & QLoRA Mastery: The Beginner-to-Advanced Guide to Efficient LLM Fine-Tuning",
     excerpt: "Understand the intuition behind LoRA and QLoRA, learn the math without getting lost in equations, and fine-tune LLMs efficiently using Hugging Face, PEFT, and real-world code examples. Hello, If...",
     readTime: "15 min read",
