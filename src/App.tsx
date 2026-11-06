@@ -207,10 +207,19 @@ const HomePage = () => {
 
   const workExperience = [
     {
+      title: "AI Data Trainer",
+      company: "Handshake",
+      location: "San Francisco, CA",
+      period: "Sept 2026 - Present",
+      achievements: [
+        "Evaluated and scored <strong>1000+</strong> LLM-generated responses on a <strong>1-7 rubric</strong> for factual accuracy, formatting, and conversational quality, maintaining <strong>95% consistency</strong> with structured feedback used to refine model training data"
+      ]
+    },
+    {
       title: "ML Engineer Intern",
       company: "Plutomen technologies Pvt. Ltd.",
       location: "Gujarat, India",
-      period: "Sept 2023 - April 2024",
+      period: "May 2022 - April 2024",
       // description: "Developing RAG-based document processing systems and fine-tuning LLMs for customer support automation.",
       achievements: [
         "Architected <strong>Retrieval-Augmented Generation (RAG)</strong> document parsing pipeline, boosting data extraction accuracy from 45% to 89%, eliminating <strong>15 hours/week</strong> of manual compliance review, using <strong>LlamaIndex and LangChain</strong>",
